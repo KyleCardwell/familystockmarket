@@ -1,7 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import PlayerCard from './components/PlayerCard';
+import AddPlayerCard from './components/AddPlayerCard';
+import { connect } from 'react-redux';
 
-function App() {
+const App = (props) => {
+
+  const { players } = props;
+
+  console.log("Players: ", players)
+
   return (
     <div className="App">
       <header className="App-header">
@@ -12,8 +19,22 @@ function App() {
 
             </section>
             
-            <section className="players">
-
+            <section className="players-box">
+              <header>Players</header>
+                <div className="player-cards">
+                  {players.map(person => {
+                    return (
+                      <PlayerCard 
+                        key={person.id}
+                        id={person.id}
+                        name={person.name}
+                        points={person.points}
+                        isBanked={person.isBanked}
+                      />
+                    )
+                  })}
+                  <AddPlayerCard />
+                </div>
             </section>
 
           </div>
@@ -27,4 +48,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return ({
+    players: state.players,
+  })
+}
+
+export default connect(mapStateToProps)(App);

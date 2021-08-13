@@ -13,18 +13,21 @@ let guid = () => {
 }
 
 
+
 const AddPlayerCard = (props) => {
 
     const { addPlayer } = props;
 
     const [ newPlayer, setNewPlayer ] = useState("")
+
+    const [ visible, setVisible ] = useState(false)
     
     const handleChange = (e) => {
         setNewPlayer(e.target.value)
     }
 
     const toggleForm = () => {
-        
+        setVisible(!visible)
     }
 
     const handleSubmit = (e) => {
@@ -38,6 +41,7 @@ const AddPlayerCard = (props) => {
         }
         addPlayer(playerToAdd);
         setNewPlayer("");
+        toggleForm();
 
     }
 
@@ -46,23 +50,24 @@ const AddPlayerCard = (props) => {
             <div onClick={toggleForm}>
                 Add Player            
             </div>
-            <form 
-                className="addPlayerForm"
-                onSubmit={handleSubmit}
-            >
-                <label htmlFor="newPlayer">Name:</label>
-                <input
-                    type="text"
-                    name="newPlayer"
-                    className="newPlayer"
-                    value={newPlayer}
-                    onChange={handleChange}
-                    size="15"
-                />
-                <button 
-                    type="submit"
-                >Add</button>
-            </form>
+            {visible ?
+                <form 
+                    className="addPlayerForm"
+                    onSubmit={handleSubmit}
+                >
+                    <label htmlFor="newPlayer">Name:</label>
+                    <input
+                        type="text"
+                        name="newPlayer"
+                        className="newPlayer"
+                        value={newPlayer}
+                        onChange={handleChange}
+                        size="15"
+                    />
+                    <button 
+                        type="submit"
+                    >Add</button>
+                </form> : "" }
         </div>
     )
 }

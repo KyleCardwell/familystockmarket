@@ -37,6 +37,7 @@ const AddPlayerCard = (props) => {
             id: guid(),
             name: newPlayer,
             points: 0,
+            pointHistory: [],
             isBanked: false,
         }
         addPlayer(playerToAdd);

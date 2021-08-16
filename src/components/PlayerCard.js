@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleBanked } from '../actions'
+import { toggleBanked, bankPlayer, unBankPlayer } from '../actions'
 
 import '../App.css';
 
@@ -16,7 +16,14 @@ const PlayerCard = (props) => {
     const { id, name, points, isBanked, currentPot } = props;
 
     const handleClick = () => {
-        props.toggleBanked(id, currentPot)
+        if(isBanked === false) {
+
+            props.bankPlayer(id, currentPot)
+
+        } else {
+            
+            props.unBankPlayer(id)
+        }
     }
 
     return (
@@ -40,4 +47,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {toggleBanked})(PlayerCard);
+export default connect(mapStateToProps, {toggleBanked, bankPlayer, unBankPlayer})(PlayerCard);

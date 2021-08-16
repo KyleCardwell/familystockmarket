@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { toggleBanked } from '../actions'
+
 import '../App.css';
 
 // const initialState = {
@@ -9,10 +13,17 @@ import '../App.css';
 
 const PlayerCard = (props) => {
 
-    const { id, name, points, isBanked } = props;
+    const { id, name, points, isBanked, currentPot } = props;
+
+    const handleClick = () => {
+        props.toggleBanked(id, currentPot)
+    }
 
     return (
-        <div className="player-card">
+        <div 
+            className={isBanked ? "player-card banked" : "player-card"}
+            onClick={handleClick}
+        >
             <h2>
                 {points}
             </h2>
@@ -23,5 +34,10 @@ const PlayerCard = (props) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return({
+        currentPot: state.currentPot,
+    })
+}
 
-export default PlayerCard;
+export default connect(mapStateToProps, {toggleBanked})(PlayerCard);

@@ -1,13 +1,10 @@
 import './App.css';
-import PlayerCard from './components/PlayerCard';
-import AddPlayerCard from './components/AddPlayerCard';
 import { connect } from 'react-redux';
+import PlayersBox from './components/PlayersBox';
+import Scoreboard from './components/Scoreboard';
+import Controls from './components/Controls';
 
 const App = (props) => {
-
-  const { players } = props;
-
-  console.log("Players: ", players)
 
   return (
     <div className="App">
@@ -15,31 +12,13 @@ const App = (props) => {
         <div className="container">
           <div className="container-left">
             
-            <section className="controls">
-
-            </section>
+            <Controls />
             
-            <section className="players-box">
-              <header>Players</header>
-                <div className="player-cards">
-                  {players.map(person => {
-                    return (
-                      <PlayerCard 
-                        key={person.id}
-                        id={person.id}
-                        name={person.name}
-                        points={person.points}
-                        isBanked={person.isBanked}
-                      />
-                    )
-                  })}
-                  <AddPlayerCard />
-                </div>
-            </section>
+            <PlayersBox />
 
           </div>
           <div className="scoreboard">
-
+            <Scoreboard />
           </div>
 
         </div>

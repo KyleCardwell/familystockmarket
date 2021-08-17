@@ -57,7 +57,7 @@ const AddPlayerCard = (props) => {
                     onSubmit={handleSubmit}
                 >
                     <label htmlFor="newPlayer">Name:</label>
-                    <input
+                    <input autoFocus
                         type="text"
                         name="newPlayer"
                         className="newPlayer"

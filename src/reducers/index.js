@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, TOGGLE_BANKED, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, NEXT_ROUND, TOGGLE_BANKED, UNBANK_PLAYER } from "../actions";
 import { fakePlayers } from '../components/fakePlayers'
 
 export const initialState = {
@@ -44,10 +44,12 @@ export const reducer = (state = initialState, action) => {
                     if(player.isBanked === false) {
 
                         player.isBanked = true;
-                        player.points = player.points + Number(action.payload.num)
                         player.pointHistory.push(action.payload.num)
+                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
+                    console.log(player)
                 }
+            
 
                 return player;
             })
@@ -63,9 +65,10 @@ export const reducer = (state = initialState, action) => {
                     if(player.isBanked === true) {
 
                         player.isBanked = false;
-                        player.points = player.points - player.pointHistory[player.pointHistory.length - 1]
                         player.pointHistory.pop()
+                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
+                    console.log(player)
                 }
 
                 return player
@@ -78,6 +81,26 @@ export const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 currentPot: Number(state.currentPot) + Number(action.payload)
+            })
+        case(NEXT_ROUND):
+
+            const unbankedPlayers = state.players.map(player => {
+                if(player.isBanked === false) {
+                    player.pointHistory.push(0)
+                }
+                return player
+            })
+            console.log(unbankedPlayers)
+            return ({
+                ...state,
+                currentPot: 0,
+                currentRound: state.currentRound + 1,
+                players: unbankedPlayers.map(player => {
+                    return ({
+                        ...player,
+                        isBanked: false,
+                    })
+                })
             })
         default:
             return state;

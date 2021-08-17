@@ -52,11 +52,18 @@
   /* height: 80vh; */
 }
 
+.controls-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: solid red 2px;
+}
+
 .controls {
   display: flex;
-  border: solid red 2px;
-  /* height: 120px; */
-  flex-direction: column;
+  width: 100%;
+  /* flex-direction: column; */
   justify-content: space-evenly;
   align-items: center;
 }

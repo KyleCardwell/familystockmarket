@@ -5,6 +5,7 @@ export const initialState = {
     
     players: fakePlayers,
     currentPot: 0,
+    currentRoll: 1,
     currentRound: 1,    
 
 }
@@ -80,7 +81,8 @@ export const reducer = (state = initialState, action) => {
         case(ADD_TO_POT):
             return ({
                 ...state,
-                currentPot: Number(state.currentPot) + Number(action.payload)
+                currentPot: Number(state.currentPot) + Number(action.payload),
+                currentRoll: state.currentRoll + 1
             })
         case(NEXT_ROUND):
 
@@ -95,6 +97,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 currentPot: 0,
                 currentRound: state.currentRound + 1,
+                currentRoll: 1,
                 players: unbankedPlayers.map(player => {
                     return ({
                         ...player,

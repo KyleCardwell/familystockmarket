@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { addToPot } from '../actions';
+import { addToPot, nextRound } from '../actions';
 
 const Controls = (props) => {
 
@@ -18,29 +18,40 @@ const Controls = (props) => {
     }
 
     return (
-        <div className="controls">
+        <div className="controls-header">
 
             <h4>Controls</h4>
             
-            <div>
-                <h4>{props.currentPot}</h4>
-            </div>
+            <div className="controls">
 
-            <div className="control-btns">
-                <form onSubmit={handleSubmit}>
+                <div>
+                    <h4>{props.currentPot}</h4>
+                    <h5>Current Pot</h5>
+                </div>
 
-                    <input
-                        type="number"
-                        name="diceRoll"
-                        id="diceRoll"
-                        value={diceRoll || ""}
-                        placeholder="Enter Dice Roll Here"
-                        onChange={handleChange}
-                    />
-                    
-                    <button type="submit">Submit</button>
-                </form>
+                <div className="control-btns">
+                    <form onSubmit={handleSubmit}>
 
+                        <input autoFocus
+                            type="number"
+                            name="diceRoll"
+                            id="diceRoll"
+                            value={diceRoll || ""}
+                            placeholder="Enter Dice Roll Here"
+                            onChange={handleChange}
+                        />
+                        
+                        <button type="submit">Submit</button>
+                    </form>
+
+                </div>
+                <div>
+
+                    <h4>{props.currentRound}</h4>
+                    <h5>Current Round</h5>
+
+                    <button type="button" onClick={props.nextRound}>Next Round</button>
+                </div>
             </div>
 
         </div>
@@ -51,7 +62,8 @@ const Controls = (props) => {
 const mapStateToProps = (state) => {
     return({
         currentPot: state.currentPot,
+        currentRound: state.currentRound,
     })
 }
 
-export default connect(mapStateToProps, {addToPot})(Controls);
+export default connect(mapStateToProps, {addToPot, nextRound})(Controls);

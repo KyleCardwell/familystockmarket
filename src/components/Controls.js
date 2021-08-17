@@ -28,6 +28,10 @@ const Controls = (props) => {
                     <h4>{props.currentPot}</h4>
                     <h5>Current Pot</h5>
                 </div>
+                <div>
+                    <h4>{props.currentRoll}</h4>
+                    <h5>Current Roll</h5>
+                </div>
 
                 <div className="control-btns">
                     <form onSubmit={handleSubmit}>
@@ -63,6 +67,7 @@ const mapStateToProps = (state) => {
     return({
         currentPot: state.currentPot,
         currentRound: state.currentRound,
+        currentRoll: state.currentRoll,
     })
 }
 

@@ -5,6 +5,8 @@ export const BANK_DICE_ROLL = "BANK_DICE_ROLL"
 export const BANK_PLAYER = "BANK_PLAYER"
 export const UNBANK_PLAYER = "UNBANK_PLAYER"
 export const NEXT_ROUND = "NEXT_ROUND"
+export const DELETE_PLAYER = "DELETE_PLAYER"
+export const NEW_GAME = "NEW_GAME"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -28,4 +30,12 @@ export const unBankPlayer = (id) => {
 
 export const nextRound = () => {
     return({type: NEXT_ROUND})
+}
+
+export const deletePlayer = (id) => {
+    return({type: DELETE_PLAYER, payload: id})
+}
+
+export const newGame = () => {
+    return({type: NEW_GAME})
 }

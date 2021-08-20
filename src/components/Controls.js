@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { addToPot, nextRound } from '../actions';
+import { addToPot, nextRound, newGame } from '../actions';
 
 const Controls = (props) => {
 
@@ -20,20 +20,23 @@ const Controls = (props) => {
     return (
         <div className="controls-header">
 
-            <h4>Controls</h4>
+            <div className="controls-title">
+                <h4>Controls</h4>
+                <button type="button" onClick={() => props.newGame()}>New Game</button>
+            </div>
             
             <div className="controls">
 
-                <div>
-                    <h4>{props.currentPot}</h4>
-                    <h5>Current Pot</h5>
-                </div>
                 <div>
                     <h4>{props.currentRoll}</h4>
                     <h5>Current Roll</h5>
                 </div>
 
                 <div className="control-btns">
+                    <div>
+                        <h4>{props.currentPot}</h4>
+                        <h5>Current Pot</h5>
+                    </div>
                     <form onSubmit={handleSubmit}>
 
                         <input autoFocus
@@ -53,7 +56,6 @@ const Controls = (props) => {
 
                     <h4>{props.currentRound}</h4>
                     <h5>Current Round</h5>
-
                     <button type="button" onClick={props.nextRound}>Next Round</button>
                 </div>
             </div>
@@ -71,4 +73,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {addToPot, nextRound})(Controls);
+export default connect(mapStateToProps, {addToPot, nextRound, newGame})(Controls);

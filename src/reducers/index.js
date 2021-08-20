@@ -1,9 +1,9 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, NEXT_ROUND, TOGGLE_BANKED, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, TOGGLE_BANKED, UNBANK_PLAYER } from "../actions";
 import { fakePlayers } from '../components/fakePlayers'
 
 export const initialState = {
     
-    players: fakePlayers,
+    players: [],
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,    
@@ -16,6 +16,12 @@ export const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 players: [...state.players, action.payload]
+            })
+        case(DELETE_PLAYER):
+        const filtered = state.players.filter(player => Number(player.id) !== Number(action.payload))
+            return({
+                ...state,
+                players: filtered
             })
         // case(TOGGLE_BANKED):
         //     console.log(action.payload)
@@ -48,7 +54,6 @@ export const reducer = (state = initialState, action) => {
                         player.pointHistory.push(action.payload.num)
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
-                    console.log(player)
                 }
             
 
@@ -69,7 +74,6 @@ export const reducer = (state = initialState, action) => {
                         player.pointHistory.pop()
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
-                    console.log(player)
                 }
 
                 return player
@@ -102,6 +106,21 @@ export const reducer = (state = initialState, action) => {
                     return ({
                         ...player,
                         isBanked: false,
+                    })
+                })
+            })
+        case(NEW_GAME):
+            return({
+                ...state,
+                currentPot: 0,
+                currentRoll: 1,
+                currentRound: 1,
+                players: state.players.map(player => {
+                    return({
+                        ...player,
+                        isBanked: false,
+                        pointHistory: [],
+                        points: 0
                     })
                 })
             })

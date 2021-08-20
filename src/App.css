@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   color: white;
 }
 
@@ -68,8 +68,15 @@
   align-items: center;
 }
 
+.controls-title {
+  display: flex;
+  justify-content: space-around;
+  
+}
+
 .control-btns {
   display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
 }
 
@@ -112,6 +119,15 @@
 .player-card:after {
   /* display: block; */
   padding-bottom: 100%;
+}
+
+.player-edit-btn-hide {
+  visibility: hidden;
+}
+
+.player-edit-btn{
+  visibility: visible;
+  background: blue;
 }
 
 .addPlayerForm {

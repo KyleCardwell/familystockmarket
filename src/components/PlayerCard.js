@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleBanked, bankPlayer, unBankPlayer } from '../actions'
+import { toggleBanked, bankPlayer, unBankPlayer, deletePlayer } from '../actions'
 
 import '../App.css';
 
@@ -15,6 +15,8 @@ const PlayerCard = (props) => {
 
     const { id, name, points, isBanked, currentPot } = props;
 
+    const [showEdit, setShowEdit ] = useState(false)
+
     const handleClick = () => {
         if(isBanked === false) {
 
@@ -26,10 +28,20 @@ const PlayerCard = (props) => {
         }
     }
 
+    const handleShowEdit = () => {
+        setShowEdit(!showEdit)
+    }
+
+    const handleDelete = () => {
+        props.deletePlayer(id)
+    }
+
     return (
         <div 
             className={isBanked ? "player-card banked" : "player-card"}
             onClick={handleClick}
+            onMouseEnter={handleShowEdit}
+            onMouseLeave={handleShowEdit}
         >
             <h2>
                 {points}
@@ -37,6 +49,11 @@ const PlayerCard = (props) => {
             <h3>
                 {name}
             </h3>
+            <div className={showEdit ? "player-edit-btn" : "player-edit-btn-hide"}>Edit</div>
+            <div
+                className={showEdit ? "player-edit-btn" : "player-edit-btn-hide"}
+                onClick={handleDelete}
+            >Delete</div>
         </div>
     )
 }
@@ -47,4 +64,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {toggleBanked, bankPlayer, unBankPlayer})(PlayerCard);
+export default connect(mapStateToProps, {toggleBanked, bankPlayer, unBankPlayer, deletePlayer})(PlayerCard);

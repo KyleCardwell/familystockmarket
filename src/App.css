@@ -69,8 +69,10 @@
 }
 
 .controls-title {
+  width: 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   
 }
 
@@ -78,6 +80,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+}
+
+.newGameBtn {
+  height: 30px;
 }
 
 .players {
@@ -140,4 +146,12 @@
 
 .banked {
   background-color: red;
+}
+
+.score-card {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  max-height: 25px;
+  border-bottom: red 1px solid;
 }

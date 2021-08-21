@@ -22,7 +22,11 @@ const Controls = (props) => {
 
             <div className="controls-title">
                 <h4>Controls</h4>
-                <button type="button" onClick={() => props.newGame()}>New Game</button>
+                <button 
+                    type="button" 
+                    className="newGameBtn"
+                    onClick={() => props.newGame()}
+                >New Game</button>
             </div>
             
             <div className="controls">

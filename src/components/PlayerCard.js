@@ -29,7 +29,11 @@ const PlayerCard = (props) => {
     }
 
     const handleShowEdit = () => {
-        setShowEdit(!showEdit)
+        setShowEdit(true)
+    }
+
+    const handleHideEdit = () => {
+        setShowEdit(false)
     }
 
     const handleDelete = () => {
@@ -41,7 +45,7 @@ const PlayerCard = (props) => {
             className={isBanked ? "player-card banked" : "player-card"}
             onClick={handleClick}
             onMouseEnter={handleShowEdit}
-            onMouseLeave={handleShowEdit}
+            onMouseLeave={handleHideEdit}
         >
             <h2>
                 {points}

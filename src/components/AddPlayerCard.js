@@ -44,6 +44,8 @@ const AddPlayerCard = (props) => {
         setNewPlayer("");
         toggleForm();
 
+        document.getElementById("diceRoll").focus();
+
     }
 
     return (

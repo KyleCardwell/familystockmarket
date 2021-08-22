@@ -6,15 +6,39 @@ import { addToPot, nextRound, newGame } from '../actions';
 const Controls = (props) => {
 
     const [ diceRoll, setDiceRoll ] = useState()
+    const [ diceRoll2, setDiceRoll2 ] = useState()
 
     const handleChange= (e) => {
         setDiceRoll(e.target.value)
     }
 
+    const handleChange2= (e) => {
+        setDiceRoll2(e.target.value)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.addToPot(diceRoll);
+        if(props.currentRoll <= 3){
+            if(Number(diceRoll) === Number(diceRoll2)){
+                props.addToPot(50)
+            } else if(Number(diceRoll) + Number(diceRoll2) === 7){
+                props.addToPot(70)
+            } else {
+                props.addToPot(Number(diceRoll) + Number(diceRoll2))
+            }
+        } else if(Number(diceRoll) + Number(diceRoll2) === 7){
+            props.nextRound();
+        } else if(Number(diceRoll) === Number(diceRoll2)){
+            props.addToPot(props.currentPot)
+        } else {
+            props.addToPot(Number(diceRoll) + Number(diceRoll2))
+        }
+
         setDiceRoll("")
+        setDiceRoll2("")
+
+        document.getElementById("diceRoll").focus();
+
     }
 
     return (
@@ -44,12 +68,23 @@ const Controls = (props) => {
                     <form onSubmit={handleSubmit}>
 
                         <input autoFocus
-                            type="number"
+                            type="text"
                             name="diceRoll"
                             id="diceRoll"
                             value={diceRoll || ""}
+                            size="3"
                             placeholder="Enter Dice Roll Here"
                             onChange={handleChange}
+                        />
+
+                        <input
+                            type="text"
+                            name="diceRoll2"
+                            id="diceRoll2"
+                            value={diceRoll2 || ""}
+                            size="3"
+                            placeholder="Enter Dice Roll Here"
+                            onChange={handleChange2}
                         />
                         
                         <button type="submit">Submit</button>

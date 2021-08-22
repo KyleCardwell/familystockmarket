@@ -21,23 +21,28 @@ const PlayerCard = (props) => {
         if(isBanked === false) {
 
             props.bankPlayer(id, currentPot)
+            document.getElementById("diceRoll").focus();
 
         } else {
             
             props.unBankPlayer(id)
+            document.getElementById("diceRoll").focus();
         }
     }
 
     const handleShowEdit = () => {
         setShowEdit(true)
+        
     }
 
     const handleHideEdit = () => {
         setShowEdit(false)
+        document.getElementById("diceRoll").focus();
     }
 
     const handleDelete = () => {
         props.deletePlayer(id)
+        document.getElementById("diceRoll").focus();
     }
 
     return (

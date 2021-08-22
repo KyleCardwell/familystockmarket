@@ -89,7 +89,6 @@ export const reducer = (state = initialState, action) => {
                 currentRoll: state.currentRoll + 1
             })
         case(NEXT_ROUND):
-
             const unbankedPlayers = state.players.map(player => {
                 if(player.isBanked === false) {
                     player.pointHistory.push(0)

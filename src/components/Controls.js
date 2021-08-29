@@ -3,40 +3,59 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { addToPot, nextRound, newGame } from '../actions';
 
+const initialDice = {
+    dice1: "",
+    dice2: "",
+}
+
 const Controls = (props) => {
 
-    const [ diceRoll, setDiceRoll ] = useState()
-    const [ diceRoll2, setDiceRoll2 ] = useState()
+    const [ diceRoll, setDiceRoll ] = useState(initialDice)
 
     const handleChange= (e) => {
-        setDiceRoll(e.target.value)
-    }
-
-    const handleChange2= (e) => {
-        setDiceRoll2(e.target.value)
+        setDiceRoll({
+            ...diceRoll,
+            [e.target.name]: e.target.value
+        })
     }
 
     const handleSubmit = (e) => {
+        
         e.preventDefault();
-        if(props.currentRoll <= 3){
-            if(Number(diceRoll) === Number(diceRoll2)){
-                props.addToPot(50)
-            } else if(Number(diceRoll) + Number(diceRoll2) === 7){
-                props.addToPot(70)
+
+        if(diceRoll.dice1 !== "" && diceRoll.dice2 !== "") {
+            
+            if(props.currentRoll <= 3){
+
+                if(Number(diceRoll.dice1) === Number(diceRoll.dice2)){
+
+                    props.addToPot(50)
+
+                } else if(Number(diceRoll.dice1) + Number(diceRoll.dice2) === 7){
+
+                    props.addToPot(70)
+
+                } else {
+                    props.addToPot(Number(diceRoll.dice1) + Number(diceRoll.dice2))
+                }
+
+            } else if(Number(diceRoll.dice1) + Number(diceRoll.dice2) === 7){
+
+                props.nextRound();
+
+            } else if(Number(diceRoll.dice1) === Number(diceRoll.dice2)){
+
+                props.addToPot(props.currentPot)
+
             } else {
-                props.addToPot(Number(diceRoll) + Number(diceRoll2))
+
+                props.addToPot(Number(diceRoll.dice1) + Number(diceRoll.dice2))
             }
-        } else if(Number(diceRoll) + Number(diceRoll2) === 7){
-            props.nextRound();
-        } else if(Number(diceRoll) === Number(diceRoll2)){
-            props.addToPot(props.currentPot)
-        } else {
-            props.addToPot(Number(diceRoll) + Number(diceRoll2))
+
+            setDiceRoll(initialDice)
+            
         }
-
-        setDiceRoll("")
-        setDiceRoll2("")
-
+        
         document.getElementById("diceRoll").focus();
 
     }
@@ -58,6 +77,7 @@ const Controls = (props) => {
                 <div>
                     <h4>{props.currentRoll}</h4>
                     <h5>Current Roll</h5>
+                    {props.currentRoll <= 3 ? <p>No ne can bank until after roll 3</p> : ""}
                 </div>
 
                 <div className="control-btns">
@@ -69,22 +89,22 @@ const Controls = (props) => {
 
                         <input autoFocus
                             type="text"
-                            name="diceRoll"
+                            name="dice1"
                             id="diceRoll"
-                            value={diceRoll || ""}
+                            value={diceRoll.dice1 || ""}
                             size="3"
-                            placeholder="Enter Dice Roll Here"
+                            placeholder="dice 1"
                             onChange={handleChange}
                         />
 
                         <input
                             type="text"
-                            name="diceRoll2"
+                            name="dice2"
                             id="diceRoll2"
-                            value={diceRoll2 || ""}
+                            value={diceRoll.dice2 || ""}
                             size="3"
-                            placeholder="Enter Dice Roll Here"
-                            onChange={handleChange2}
+                            placeholder="dice 2"
+                            onChange={handleChange}
                         />
                         
                         <button type="submit">Submit</button>

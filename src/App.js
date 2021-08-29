@@ -1,5 +1,4 @@
 import './App.css';
-import { connect } from 'react-redux';
 import PlayersBox from './components/PlayersBox';
 import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
@@ -27,10 +26,5 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = state => {
-  return ({
-    players: state.players,
-  })
-}
 
-export default connect(mapStateToProps)(App);
+export default App;

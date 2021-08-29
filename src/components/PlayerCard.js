@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleBanked, bankPlayer, unBankPlayer, deletePlayer } from '../actions'
+import { bankPlayer, unBankPlayer, deletePlayer } from '../actions'
 
 import '../App.css';
 
@@ -73,4 +73,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {toggleBanked, bankPlayer, unBankPlayer, deletePlayer})(PlayerCard);
+export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer})(PlayerCard);

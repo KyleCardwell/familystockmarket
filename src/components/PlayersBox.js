@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const PlayersBox = (props) => {
 
-    const { players } = props;
+    const playersList = props.players;
 
     return (
         <section className="players-box">
@@ -14,7 +14,7 @@ const PlayersBox = (props) => {
 
             <div className="player-cards">
 
-                {players.map((person) => {
+                {playersList.map((person) => {
 
                     return (
                         <PlayerCard

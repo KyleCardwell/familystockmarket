@@ -16,10 +16,6 @@ export const addToPot = (num) => {
     return({type: ADD_TO_POT, payload: num})
 }
 
-export const toggleBanked = (id, num) => {
-    return({type: TOGGLE_BANKED, payload: {id: Number(id), num: Number(num)}})
-}
-
 export const bankPlayer = (id, num) => {
     return({type: BANK_PLAYER, payload: {id: Number(id), num: Number(num)}})
 }

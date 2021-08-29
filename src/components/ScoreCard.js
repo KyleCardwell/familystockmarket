@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ScoreCard = (props) => {
-    console.log(props.name)
 
     return(
         <div className="score-card">

@@ -6,7 +6,9 @@ const Scoreboard = (props) => {
 
     const { players } = props;
 
-    const sorted = players.sort(function(a,b){return b.points - a.points})
+    const sorted = [...players]
+    
+    sorted.sort(function(a,b){return b.points - a.points})
 
     return (
         <section>

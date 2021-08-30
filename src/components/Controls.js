@@ -36,12 +36,16 @@ const Controls = (props) => {
                     props.addToPot(70)
 
                 } else {
+
                     props.addToPot(Number(diceRoll.dice1) + Number(diceRoll.dice2))
+
                 }
 
             } else if(Number(diceRoll.dice1) + Number(diceRoll.dice2) === 7){
 
+                alert("Whoops! Someone Rolled a 7...starting next round!")
                 props.nextRound();
+                document.getElementById("diceRoll").focus();
 
             } else if(Number(diceRoll.dice1) === Number(diceRoll.dice2)){
 
@@ -74,13 +78,14 @@ const Controls = (props) => {
             
             <div className="controls">
 
-                <div>
+                <div className="control-display">
                     <h4>{props.currentRoll}</h4>
                     <h5>Current Roll</h5>
-                    {props.currentRoll <= 3 ? <p>No ne can bank until after roll 3</p> : ""}
+                    {props.currentRoll <= 3 ? <div><p>No one can bank until after roll 3</p><p>Doubles are worth 50</p><p>7 is worth 70</p></div> : ""}
+                    {props.currentRoll > 3 ? <div><p>Doubles will double the current pot</p><p>7 will end the round</p></div> : ""}
                 </div>
 
-                <div className="control-btns">
+                <div className="control-btns control-display">
                     <div>
                         <h4>{props.currentPot}</h4>
                         <h5>Current Pot</h5>
@@ -111,7 +116,7 @@ const Controls = (props) => {
                     </form>
 
                 </div>
-                <div>
+                <div className="control-display">
 
                     <h4>{props.currentRound}</h4>
                     <h5>Current Round</h5>

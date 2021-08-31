@@ -49,9 +49,9 @@ const AddPlayerCard = (props) => {
     }
 
     return (
-        <div className="player-card">
-            <div onClick={toggleForm}>
-                Add Player            
+        <div className="w-1/12 flex-row border p-2 justify-evenly">
+            <div onClick={toggleForm} className="text-center align-middle">
+                {visible ? "Cancel" : "Add Player" }            
             </div>
             {visible ?
                 <form 
@@ -62,7 +62,7 @@ const AddPlayerCard = (props) => {
                     <input autoFocus
                         type="text"
                         name="newPlayer"
-                        className="newPlayer"
+                        className="w-full text-center text-black"
                         value={newPlayer}
                         onChange={handleChange}
                         size="15"

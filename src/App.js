@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import PlayersBox from './components/PlayersBox';
 import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
@@ -6,17 +6,17 @@ import Controls from './components/Controls';
 const App = (props) => {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="container">
-          <div className="container-left">
+    <div className="bg-gray-800 p-10 text-white h-screen">
+      <header className="p-5 h-full">
+        <div className="flex justify-evenly">
+          <div className="w-3/4">
             
             <Controls />
             
             <PlayersBox />
 
           </div>
-          <div className="scoreboard">
+          <div className="w-1/4">
             <Scoreboard />
           </div>
 

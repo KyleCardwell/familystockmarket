@@ -1,9 +1,9 @@
 import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, UNBANK_PLAYER } from "../actions";
-import { fakePlayers } from "../components/fakePlayers";
+// import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
     
-    players: fakePlayers,
+    players: [],
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,    
@@ -27,15 +27,18 @@ export const reducer = (state = initialState, action) => {
 
             const bankPlayers = state.players.map(player => {
 
-                if(Number(player.id) === Number(action.payload.id)) {
-                    
-                    if(player.isBanked === false) {
+                if(state.currentRoll > 3) {
 
-                        player.isBanked = true;
-                        player.pointHistory.push(action.payload.num)
-                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+                    if(Number(player.id) === Number(action.payload.id)) {
+                        
+                        if(player.isBanked === false) {
+    
+                            player.isBanked = true;
+                            player.pointHistory.push(action.payload.num)
+                            player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+                        }
+    
                     }
-
                 }
 
                 return player

@@ -47,7 +47,7 @@ const PlayerCard = (props) => {
 
     return (
         <div 
-            className={isBanked ? "player-card banked" : "player-card"}
+            className={`text-center h-px114 w-1/12 border group p-2 ${isBanked ? "bg-red-800" : ""}`}
             onClick={handleClick}
             onMouseEnter={handleShowEdit}
             onMouseLeave={handleHideEdit}
@@ -58,9 +58,9 @@ const PlayerCard = (props) => {
             <h3>
                 {name}
             </h3>
-            <div className={showEdit ? "player-edit-btn" : "player-edit-btn-hide"}>Edit</div>
+            <div className={showEdit ? "block" : "hidden group-hover:block"}>Edit</div>
             <div
-                className={showEdit ? "player-edit-btn" : "player-edit-btn-hide"}
+                className={showEdit ? "block" : "hidden group-hover:block"}
                 onClick={handleDelete}
             >Delete</div>
         </div>

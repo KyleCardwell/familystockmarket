@@ -8,11 +8,11 @@ const PlayersBox = (props) => {
     const playersList = props.players;
 
     return (
-        <section className="players-box">
+        <section className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5 cursor-pointer ">
 
-            <h4>Players</h4>
+            <h4 className="font-bold text-center">Players</h4>
 
-            <div className="player-cards">
+            <div className={`flex flex-wrap justify-evenly h-full`}>
 
                 {playersList.map((person) => {
 

@@ -11,11 +11,11 @@ const Scoreboard = (props) => {
     sorted.sort(function(a,b){return b.points - a.points})
 
     return (
-        <section>
+        <section className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5 h-full">
 
-            <h4>Scoreboard</h4>
+            <h4 className="font-bold text-center border">Scoreboard</h4>
 
-            <div>
+            <div className={`flex-row `}>
 
                 {sorted.map((person) => {
 

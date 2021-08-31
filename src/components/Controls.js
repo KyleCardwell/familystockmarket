@@ -65,32 +65,34 @@ const Controls = (props) => {
     }
 
     return (
-        <div className="controls-header">
+        <div className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5">
 
-            <div className="controls-title">
-                <h4>Controls</h4>
+            <div className="flex justify-between mb-4">
+                <h4 className="font-bold">Controls</h4>
                 <button 
                     type="button" 
-                    className="newGameBtn"
+                    className="border p-2"
                     onClick={() => props.newGame()}
                 >New Game</button>
             </div>
             
-            <div className="controls">
+            <div className="flex justify-evenly text-center">
 
-                <div className="control-display">
-                    <h4>{props.currentRoll}</h4>
-                    <h5>Current Roll</h5>
-                    {props.currentRoll <= 3 ? <div><p>No one can bank until after roll 3</p><p>Doubles are worth 50</p><p>7 is worth 70</p></div> : ""}
-                    {props.currentRoll > 3 ? <div><p>Doubles will double the current pot</p><p>7 will end the round</p></div> : ""}
+                <div className="border w-1/3">
+                    <div className="border p-2">
+                        <h4>{props.currentRoll}</h4>
+                        <h5>Current Roll</h5>
+                    </div>
+                    {props.currentRoll <= 3 ? <div className="p-2"><p>No one can bank until after roll 3</p><p>Doubles are worth 50</p><p>7 is worth 70</p></div> : ""}
+                    {props.currentRoll > 3 ? <div className="p-2"><p>Doubles will double the current pot</p><p>7 will end the round</p><p>_</p></div> : ""}
                 </div>
 
-                <div className="control-btns control-display">
-                    <div>
+                <div className="border w-1/5">
+                    <div className="border p-2">
                         <h4>{props.currentPot}</h4>
                         <h5>Current Pot</h5>
                     </div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="p-2 flex justify-evenly">
 
                         <input autoFocus
                             type="text"
@@ -100,6 +102,7 @@ const Controls = (props) => {
                             size="3"
                             placeholder="dice 1"
                             onChange={handleChange}
+                            className="border text-black h-14 text-center text-"
                         />
 
                         <input
@@ -110,17 +113,19 @@ const Controls = (props) => {
                             size="3"
                             placeholder="dice 2"
                             onChange={handleChange}
+                            className="border text-black h-14 text-center"
                         />
                         
                         <button type="submit">Submit</button>
                     </form>
 
                 </div>
-                <div className="control-display">
-
-                    <h4>{props.currentRound}</h4>
-                    <h5>Current Round</h5>
-                    <button type="button" onClick={props.nextRound}>Next Round</button>
+                <div className="border">
+                    <div className="border p-2">
+                        <h4>{props.currentRound}</h4>
+                        <h5>Current Round</h5>
+                    </div>
+                    <button type="button" onClick={props.nextRound} className="p-3">Next Round</button>
                 </div>
             </div>
 

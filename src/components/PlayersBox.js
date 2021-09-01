@@ -8,7 +8,7 @@ const PlayersBox = (props) => {
     const playersList = props.players;
 
     return (
-        <section className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5 cursor-pointer ">
+        <section className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5">
 
             <h4 className="font-bold text-center">Players</h4>
 

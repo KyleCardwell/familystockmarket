@@ -47,7 +47,7 @@ const PlayerCard = (props) => {
 
     return (
         <div 
-            className={`text-center h-px114 w-1/12 border group p-2 ${isBanked ? "bg-red-800" : ""}`}
+            className={`cursor-pointer text-center h-px114 w-1/12 border group p-2 ${isBanked ? "bg-red-800" : ""}`}
             onClick={handleClick}
             onMouseEnter={handleShowEdit}
             onMouseLeave={handleHideEdit}
@@ -58,11 +58,20 @@ const PlayerCard = (props) => {
             <h3>
                 {name}
             </h3>
-            <div className={showEdit ? "block" : "hidden group-hover:block"}>Edit</div>
             <div
                 className={showEdit ? "block" : "hidden group-hover:block"}
+            >Edit</div>
+            <div
+                className={`${showEdit ? "block" : "hidden group-hover:block"}`}
                 onClick={handleDelete}
             >Delete</div>
+            <div
+                className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""}`}
+            >_</div>
+            <div
+                className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""}`}
+            >_</div>
+
         </div>
     )
 }

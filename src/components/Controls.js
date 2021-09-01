@@ -71,7 +71,7 @@ const Controls = (props) => {
                 <h4 className="font-bold">Controls</h4>
                 <button 
                     type="button" 
-                    className="border p-2"
+                    className="border p-2 bg-white text-gray-900"
                     onClick={() => props.newGame()}
                 >New Game</button>
             </div>
@@ -116,7 +116,7 @@ const Controls = (props) => {
                             className="border text-black h-14 text-center"
                         />
                         
-                        <button type="submit">Submit</button>
+                        <button type="submit" className="p-2 bg-white text-gray-900">Submit</button>
                     </form>
 
                 </div>
@@ -125,7 +125,7 @@ const Controls = (props) => {
                         <h4>{props.currentRound}</h4>
                         <h5>Current Round</h5>
                     </div>
-                    <button type="button" onClick={props.nextRound} className="p-3">Next Round</button>
+                    <button type="button" onClick={props.nextRound} className="mt-5 p-2  bg-white text-gray-900">Next Round</button>
                 </div>
             </div>
 

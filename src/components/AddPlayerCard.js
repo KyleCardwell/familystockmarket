@@ -49,8 +49,8 @@ const AddPlayerCard = (props) => {
     }
 
     return (
-        <div className="w-1/12 flex-row border p-2 justify-evenly">
-            <div onClick={toggleForm} className="text-center align-middle">
+        <div className="w-1/12 flex-row border p-2 justify-evenly cursor-pointer">
+            <div onClick={toggleForm} className="text-center align-middle bg-white text-gray-900">
                 {visible ? "Cancel" : "Add Player" }            
             </div>
             {visible ?
@@ -69,6 +69,7 @@ const AddPlayerCard = (props) => {
                     />
                     <button 
                         type="submit"
+                        className="bg-white text-gray-900"
                     >Add</button>
                 </form> : "" }
         </div>

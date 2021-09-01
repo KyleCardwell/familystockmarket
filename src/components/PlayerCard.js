@@ -52,10 +52,10 @@ const PlayerCard = (props) => {
             onMouseEnter={handleShowEdit}
             onMouseLeave={handleHideEdit}
         >
-            <h2>
+            <h2 className="font-bold text-xl">
                 {points}
             </h2>
-            <h3>
+            <h3 className="font-bold text-xl">
                 {name}
             </h3>
             <div

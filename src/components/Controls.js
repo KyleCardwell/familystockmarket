@@ -120,12 +120,15 @@ const Controls = (props) => {
                     </form>
 
                 </div>
-                <div className="border">
+                <div className="flex-col border">
                     <div className="border p-2">
                         <h4>{props.currentRound}</h4>
                         <h5>Current Round</h5>
                     </div>
-                    <button type="button" onClick={props.nextRound} className="mt-5 p-2  bg-white text-gray-900">Next Round</button>
+                    <div className="content-evenly p-2">
+                        <div onClick={props.nextRound} className="mt-2 border-gray-900 p-1 bg-white text-gray-900 cursor-pointer">Next Round</div>
+                        <div onClick={props.nextRound} className="mt-2 border-gray-900 p-1 bg-white text-gray-900 cursor-pointer">Restart Round</div>
+                    </div>
                 </div>
             </div>
 

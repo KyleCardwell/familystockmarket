@@ -10,7 +10,7 @@ const PlayersBox = (props) => {
     return (
         <section className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5">
 
-            <h4 className="font-bold text-center">Players</h4>
+            <h4 className="font-bold text-center mb-3">Players - Click on a player's name to bank (or unbank) their score</h4>
 
             <div className={`flex flex-wrap justify-evenly h-full`}>
 

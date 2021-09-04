@@ -7,6 +7,7 @@ export const UNBANK_PLAYER = "UNBANK_PLAYER"
 export const NEXT_ROUND = "NEXT_ROUND"
 export const DELETE_PLAYER = "DELETE_PLAYER"
 export const NEW_GAME = "NEW_GAME"
+export const TOP_SCORE = "TOP_SCORE"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -34,4 +35,8 @@ export const deletePlayer = (id) => {
 
 export const newGame = () => {
     return({type: NEW_GAME})
+}
+
+export const setTopScore = (num) => {
+    return({type: TOP_SCORE, payload: num})
 }

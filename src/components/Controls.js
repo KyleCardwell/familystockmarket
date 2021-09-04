@@ -67,7 +67,7 @@ const Controls = (props) => {
     return (
         <div className="bg-gray-900 max-w-full rounded overflow-hidden shadow-lg p-5">
 
-            <div className="flex justify-between mb-4">
+            <div className="flex-row-reverse justify-between mb-4">
                 <h4 className="font-bold">Controls</h4>
                 <button 
                     type="button" 

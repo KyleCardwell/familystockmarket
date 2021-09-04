@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -6,7 +6,8 @@ export const initialState = {
     players: [],
     currentPot: 0,
     currentRoll: 1,
-    currentRound: 1,    
+    currentRound: 1,
+    topScore: 0, 
 
 }
 
@@ -110,6 +111,11 @@ export const reducer = (state = initialState, action) => {
                         points: 0
                     })
                 })
+            })
+        case(TOP_SCORE):
+            return({
+                ...state,
+                topScore: action.payload
             })
         default:
             return state;

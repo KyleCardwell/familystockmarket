@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -95,6 +95,24 @@ export const reducer = (state = initialState, action) => {
                         ...player,
                         isBanked: false,
                     })
+                })
+            })
+        case(RESTART_ROUND):
+            return ({
+                ...state,
+                currentPot: 0,
+                currentRoll: 1,
+                currentRound: state.currentRound,
+                players: state.players.map(player => {
+
+                    if(player.isBanked === true) {
+    
+                        player.isBanked = false;
+                        player.pointHistory.pop()
+                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+                    }
+
+                    return player
                 })
             })
         case(NEW_GAME):

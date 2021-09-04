@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { addToPot, nextRound, newGame } from '../actions';
+import { addToPot, nextRound, newGame, restartRound } from '../actions';
 
 const initialDice = {
     dice1: "",
@@ -127,7 +127,7 @@ const Controls = (props) => {
                     </div>
                     <div className="content-evenly p-2">
                         <div onClick={props.nextRound} className="mt-2 border-gray-900 p-1 bg-white text-gray-900 cursor-pointer">Next Round</div>
-                        <div onClick={props.nextRound} className="mt-2 border-gray-900 p-1 bg-white text-gray-900 cursor-pointer">Restart Round</div>
+                        <div onClick={props.restartRound} className="mt-2 border-gray-900 p-1 bg-white text-gray-900 cursor-pointer">Restart Round</div>
                     </div>
                 </div>
             </div>
@@ -145,4 +145,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {addToPot, nextRound, newGame})(Controls);
+export default connect(mapStateToProps, {addToPot, nextRound, newGame, restartRound})(Controls);

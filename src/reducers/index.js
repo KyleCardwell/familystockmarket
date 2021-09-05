@@ -35,7 +35,7 @@ export const reducer = (state = initialState, action) => {
                         if(player.isBanked === false) {
     
                             player.isBanked = true;
-                            player.pointHistory.push(action.payload.num)
+                            player.pointHistory[player.pointHistory.length - 1] = action.payload.num
                             player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                         }
     
@@ -58,7 +58,7 @@ export const reducer = (state = initialState, action) => {
                     if(player.isBanked === true) {
 
                         player.isBanked = false;
-                        player.pointHistory.pop()
+                        player.pointHistory[player.pointHistory.length - 1] = 0
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
 
@@ -79,21 +79,17 @@ export const reducer = (state = initialState, action) => {
                 currentRoll: state.currentRoll + 1
             })
         case(NEXT_ROUND):
-            const unbankedPlayers = state.players.map(player => {
-                if(player.isBanked === false) {
-                    player.pointHistory.push(0)
-                }
-                return player
-            })
+
             return ({
                 ...state,
                 currentPot: 0,
                 currentRound: state.currentRound + 1,
                 currentRoll: 1,
-                players: unbankedPlayers.map(player => {
+                players: state.players.map(player => {
                     return ({
                         ...player,
                         isBanked: false,
+                        pointHistory: [...player.pointHistory, 0]
                     })
                 })
             })
@@ -108,7 +104,7 @@ export const reducer = (state = initialState, action) => {
                     if(player.isBanked === true) {
     
                         player.isBanked = false;
-                        player.pointHistory.pop()
+                        player.pointHistory[player.pointHistory.length - 1] = 0
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
                     }
 
@@ -125,7 +121,7 @@ export const reducer = (state = initialState, action) => {
                     return({
                         ...player,
                         isBanked: false,
-                        pointHistory: [],
+                        pointHistory: [0],
                         points: 0
                     })
                 })

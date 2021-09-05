@@ -6,7 +6,7 @@ import Controls from './components/Controls';
 const App = (props) => {
 
   return (
-    <div className="bg-gray-800 p-5 text-white h-screen">
+    <div className="bg-gray-800 p-1 text-white h-screen">
       <header className="p-5 h-full">
         <div className="flex justify-evenly">
           <div className="w-3/4">

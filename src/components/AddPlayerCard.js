@@ -16,7 +16,7 @@ let guid = () => {
 
 const AddPlayerCard = (props) => {
 
-    const { addPlayer } = props;
+    const { addPlayer, currentRound } = props;
 
     const [ newPlayer, setNewPlayer ] = useState("")
 
@@ -30,6 +30,18 @@ const AddPlayerCard = (props) => {
         setVisible(!visible)
     }
 
+    const addPlayerArray = () => {
+
+        const playerArray = []
+
+        for(let i=0; i < currentRound; i++) {
+                playerArray.push(0)    
+        }
+
+        return playerArray;
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -37,7 +49,7 @@ const AddPlayerCard = (props) => {
             id: guid(),
             name: newPlayer,
             points: 0,
-            pointHistory: [],
+            pointHistory: addPlayerArray(),
             isBanked: false,
         }
         addPlayer(playerToAdd);
@@ -49,7 +61,7 @@ const AddPlayerCard = (props) => {
     }
 
     return (
-        <div className="w-1/12 flex-row border p-2 justify-evenly cursor-pointer">
+        <div className="w-1/12 flex-row border p-2 justify-evenly cursor-pointer hover:bg-gray-800">
             <div onClick={toggleForm} className="text-center align-middle bg-white text-gray-900">
                 {visible ? "Cancel" : "Add Player" }            
             </div>
@@ -76,6 +88,11 @@ const AddPlayerCard = (props) => {
     )
 }
 
+const mapStateToProps = state => {
+    return({
+        currentRound: state.currentRound
+    })
+}
 
 
-export default connect(null, { addPlayer })(AddPlayerCard);
+export default connect(mapStateToProps, { addPlayer })(AddPlayerCard);

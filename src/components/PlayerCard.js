@@ -47,7 +47,7 @@ const PlayerCard = (props) => {
 
     return (
         <div 
-            className={`cursor-pointer text-center h-px114 w-1/12 border group p-2 ${isBanked ? "bg-red-800" : ""}`}
+            className={`cursor-pointer text-center h-px114 w-1/12 border group p-2 ${isBanked ? "bg-red-800 hover:bg-red-600" : ""} hover:bg-gray-800`}
             onClick={handleClick}
             onMouseEnter={handleShowEdit}
             onMouseLeave={handleHideEdit}

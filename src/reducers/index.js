@@ -83,7 +83,7 @@ export const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 currentPot: 0,
-                currentRound: state.currentRound + 1,
+                currentRound: state.currentRound < 20 ? state.currentRound + 1 : state.currentRound,
                 currentRoll: 1,
                 players: state.players.map(player => {
                     return ({

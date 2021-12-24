@@ -25,7 +25,11 @@ const Controls = (props) => {
 
         if(diceRoll.dice1 !== "" && diceRoll.dice2 !== "") {
             
-            if(props.currentRoll <= 3){
+            if(Number(diceRoll.dice1) + Number(diceRoll.dice2) === 7 && props.currentRound === 20 && props.currentRoll > 3) {
+
+                alert("Oh no! Not another 7! Game Over! Somebody Won!")
+
+            } else if(props.currentRoll <= 3){
 
                 if(Number(diceRoll.dice1) === Number(diceRoll.dice2)){
 

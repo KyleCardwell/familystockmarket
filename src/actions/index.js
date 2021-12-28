@@ -9,6 +9,7 @@ export const DELETE_PLAYER = "DELETE_PLAYER"
 export const NEW_GAME = "NEW_GAME"
 export const TOP_SCORE = "TOP_SCORE"
 export const RESTART_ROUND = "RESTART_ROUND"
+export const MOVE_PERSON = "MOVE_PERSON"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -44,4 +45,9 @@ export const newGame = () => {
 
 export const setTopScore = (num) => {
     return({type: TOP_SCORE, payload: num})
+}
+
+export const movePerson = (personId, hoveredId) => {
+
+    return({type: MOVE_PERSON, payload: {personId: personId, hoveredId: hoveredId}})
 }

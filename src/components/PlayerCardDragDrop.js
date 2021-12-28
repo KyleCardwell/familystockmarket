@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { bankPlayer, unBankPlayer, deletePlayer } from '../actions'
+import { bankPlayer, unBankPlayer, deletePlayer, movePerson } from '../actions'
 
 import { useDrag, useDrop } from 'react-dnd';
 
@@ -15,60 +15,37 @@ import '../App.css';
 
 const PlayerCard = (props) => {
 
-    const { id, name, points, isBanked, currentPot, index, moveItem, status } = props;
+    const { id, name, points, isBanked, currentPot, index, movePerson, status } = props;
 
     const [showEdit, setShowEdit ] = useState(false)
 
+    const ref = useRef(null);
+
     // check which item is being dragged
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [, drag] = useDrag(() => ({
         type: "div",
         item: {
             id: id,
             created: "NOW"
         },
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging(),
-        })
+        // collect: (monitor) => ({
+        //     isDragging: !!monitor.isDragging(),
+        // })
         
     }))
 
     // Rearrange names in list
-    const ref = useRef(null);
 
     const [, drop] = useDrop({
         accept: "div",
         hover(item, monitor) {
 
-            console.log("Current Item ID:", item.id)
-            console.log("hovering over Item ID: ", id)
-            // if (!ref.current) {
-            //     return;
-            // }
+            if (item.id === id) {
+                return
+            }
 
-            // const dragIndex = item.index;
-            // const hoverIndex = index;
+            movePerson(item.id, id)
             
-            // if (dragIndex === hoverIndex) {
-            //     return;
-            // }
-
-            // const hoveredRect = ref.current.getBoundingClientRect();
-            // const hoverMiddleY = (hoveredRect.bottom - hoveredRect.top) / 2
-            // const mousePosition = monitor.getClientOffset();
-            // const hoverClientY = mousePosition.y - hoveredRect.top;
-
-            // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-            //     return;
-            // }
-
-            // if (dragIndex > hoverIndex && hoverClientY < hoverMiddleY) {
-            //     return;
-            // }
-
-            // console.log("hello")
-
-            // moveItem(dragIndex, hoverIndex);
-            // item.index = hoverIndex;
 
         }
 
@@ -154,4 +131,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer})(PlayerCard);
+export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer, movePerson})(PlayerCard);

@@ -136,9 +136,15 @@ export const reducer = (state = initialState, action) => {
             const moving = state.players.find(person => person.id === action.payload.personId)
             const moveToIndex = state.players.findIndex(person => person.id === action.payload.hoveredId)
 
-            console.log("moving to index ", moveToIndex)
+            const playerTakenOut = state.players.filter(player => player.id !== action.payload.personId)
+
+            playerTakenOut.splice(moveToIndex, 0, moving)
+
+            console.log("player taken out ", playerTakenOut)
+
             return({
-                ...state
+                ...state,
+                players: playerTakenOut,
             })
         default:
             return state;

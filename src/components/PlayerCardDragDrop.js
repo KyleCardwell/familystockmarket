@@ -89,7 +89,6 @@ const PlayerCard = (props) => {
             ref={ref}
             className={`border text-center h-px114 w-1/12`}>
             <div className='border-b cursor-move'>
-                Click to Drag
                 
             </div>
 

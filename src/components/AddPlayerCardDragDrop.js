@@ -62,9 +62,9 @@ const AddPlayerCard = (props) => {
 
     return (
         <div className="flex border mb-3 justify-evenly cursor-pointer hover:bg-gray-800">
-            <div onClick={toggleForm} className="m-2 px-2 text-center align-middle bg-white text-gray-900">
+            <button onClick={toggleForm} className="m-2 px-2 text-center bg-white text-gray-900">
                 {visible ? "Cancel" : "Add Player" }            
-            </div>
+            </button>
             {visible ?
                 <form 
                     className="addPlayerForm flex p-2"

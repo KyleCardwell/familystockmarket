@@ -19,8 +19,11 @@ const PlayersBox = (props) => {
             <div className="bg-gray-900 rounded shadow-lg p-5 grow flex flex-col flex-grow">
 
                 <div className="flex justify-between">
+                    <div className="font-bold text-center mb-3 flex-grow">
+                        <h4>Players - Click on a player's name to bank (or unbank) their score</h4>
+                        <h4>Click and drag a player to rearrange order</h4>
 
-                    <h4 className="font-bold text-center mb-3 flex-grow">Players - Click on a player's name to bank (or unbank) their score</h4>
+                    </div>
                     <AddPlayerCardDragDrop />
 
                 </div>

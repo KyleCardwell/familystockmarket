@@ -21,7 +21,7 @@ const Scoreboard = (props) => {
     
 
     return (
-        <section className="bg-gray-900 rounded overflow-hidden shadow-lg p-5 h-full">
+        <section className="bg-gray-900 rounded overflow-y-scroll shadow-lg p-5 h-full">
 
             <h4 className="font-bold text-center border">Scoreboard</h4>
             <div className="flex justify-between font-bold border">
@@ -33,7 +33,7 @@ const Scoreboard = (props) => {
 
             </div>
 
-            <div className={`flex-row `}>
+            <div className={`flex-row`}>
 
                 {sorted.map((person) => {
 

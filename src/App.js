@@ -2,6 +2,7 @@
 import PlayersBox from './components/PlayersBox';
 import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
+import PlayersBoxDragDrop from './components/PlayersBoxDragDrop';
 
 const App = (props) => {
 
@@ -13,7 +14,7 @@ const App = (props) => {
             
             <Controls />
             
-            <PlayersBox />
+            <PlayersBoxDragDrop />
 
           </div>
           <div className="w-1/4">

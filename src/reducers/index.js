@@ -1,9 +1,9 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, NEW_GAME, NEXT_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
-// import { fakePlayers } from "../components/fakePlayers";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
     
-    players: [],
+    players: [...fakePlayers],
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,
@@ -130,6 +130,21 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 topScore: action.payload
+            })
+        case(MOVE_PERSON):
+
+            const moving = state.players.find(person => person.id === action.payload.personId)
+            const moveToIndex = state.players.findIndex(person => person.id === action.payload.hoveredId)
+
+            const playerTakenOut = state.players.filter(player => player.id !== action.payload.personId)
+
+            playerTakenOut.splice(moveToIndex, 0, moving)
+
+            console.log("player taken out ", playerTakenOut)
+
+            return({
+                ...state,
+                players: playerTakenOut,
             })
         default:
             return state;

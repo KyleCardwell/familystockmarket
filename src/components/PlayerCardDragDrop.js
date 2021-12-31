@@ -87,7 +87,7 @@ const PlayerCard = (props) => {
 
         <div 
             ref={ref}
-            className={`border text-center h-px114 w-1/12`}>
+            className={`border text-center h-px114 w-1/12 box-border`}>
             <div className='border-b cursor-move'>
                 
             </div>

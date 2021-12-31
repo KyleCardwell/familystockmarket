@@ -1,9 +1,9 @@
 import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
-import { fakePlayers } from "../components/fakePlayers";
+// import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
     
-    players: [...fakePlayers],
+    players: [],
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,

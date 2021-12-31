@@ -113,10 +113,10 @@ const PlayerCard = (props) => {
                     onClick={handleDelete}
                 >Delete</div>
                 <div
-                    className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""}`}
+                    className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""} ${isBanked ? "text-red-800" : ""}`}
                 >_</div>
                 <div
-                    className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""}`}
+                    className={`text-gray-900 ${showEdit ? "hidden group-hover:block" : ""} ${isBanked ? "text-red-800" : ""}`}
                 >_</div>
 
             </div>

@@ -5,6 +5,7 @@ export const BANK_DICE_ROLL = "BANK_DICE_ROLL"
 export const BANK_PLAYER = "BANK_PLAYER"
 export const UNBANK_PLAYER = "UNBANK_PLAYER"
 export const NEXT_ROUND = "NEXT_ROUND"
+export const PREV_ROUND = "PREV_ROUND"
 export const DELETE_PLAYER = "DELETE_PLAYER"
 export const NEW_GAME = "NEW_GAME"
 export const TOP_SCORE = "TOP_SCORE"
@@ -29,6 +30,10 @@ export const unBankPlayer = (id) => {
 
 export const nextRound = () => {
     return({type: NEXT_ROUND})
+}
+
+export const prevRound = () => {
+    return({type: PREV_ROUND})
 }
 
 export const restartRound = () => {

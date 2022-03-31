@@ -17,7 +17,7 @@ const Scoreboard = (props) => {
         
     }
 
-    if (sorted.every(player => player.isBanked === true)) {
+    if (sorted.length > 0 && sorted.every(player => player.isBanked === true)) {
         alert("Looks like everyone has banked...Moving on to next round!")
         props.nextRound()
     }
@@ -65,7 +65,8 @@ const mapStateToProps = (state) => {
     return({
         players: state.players,
         topScore: state.topScore,
-        currentPot: state.currentPot
+        currentPot: state.currentPot,
+        currentRound: state.currentRound
     })
 }
 

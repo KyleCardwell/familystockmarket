@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import ScoreCard from './ScoreCard';
-import { setTopScore } from '../actions';
+import { setTopScore, nextRound } from '../actions';
 
 const Scoreboard = (props) => {
 
@@ -17,7 +17,10 @@ const Scoreboard = (props) => {
         
     }
 
-
+    if (sorted.every(player => player.isBanked === true)) {
+        alert("Looks like everyone has banked...Moving on to next round!")
+        props.nextRound()
+    }
     
 
     return (
@@ -66,4 +69,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {setTopScore})(Scoreboard);
+export default connect(mapStateToProps, {setTopScore, nextRound})(Scoreboard);

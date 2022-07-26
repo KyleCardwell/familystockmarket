@@ -6,6 +6,7 @@ import PlayerCardDragDrop from "./PlayerCardDragDrop";
 import AddPlayerCardDragDrop from "./AddPlayerCardDragDrop";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import EditPlayerModal from "./EditPlayerModal";
 
 const PlayersBox = (props) => {
 
@@ -25,6 +26,7 @@ const PlayersBox = (props) => {
 
                     </div>
                     <AddPlayerCardDragDrop />
+                    <EditPlayerModal />
 
                 </div>
 

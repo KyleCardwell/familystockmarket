@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { bankPlayer, unBankPlayer, deletePlayer, movePerson } from '../actions'
+import { bankPlayer, unBankPlayer, deletePlayer, movePerson, toggleEditPlayerBox } from '../actions'
 
 import { useDrag, useDrop } from 'react-dnd';
 
@@ -83,6 +83,10 @@ const PlayerCard = (props) => {
         document.getElementById("diceRoll").focus();
     }
 
+    const handleClickEdit = () => {
+        props.toggleEditPlayerBox()
+    }
+
     return (
 
         <div 
@@ -107,6 +111,7 @@ const PlayerCard = (props) => {
                 </h3>
                 <div
                     className={showEdit ? "block" : "hidden group-hover:block"}
+                    onClick={handleClickEdit}
                 >Edit</div>
                 <div
                     className={`${showEdit ? "block" : "hidden group-hover:block"}`}
@@ -130,4 +135,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer, movePerson})(PlayerCard);
+export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer, movePerson, toggleEditPlayerBox})(PlayerCard);

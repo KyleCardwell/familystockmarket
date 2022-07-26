@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, TOGGLE_EDIT_PLAYER_BOX, TOP_SCORE, UNBANK_PLAYER } from "../actions";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -7,7 +7,8 @@ export const initialState = {
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,
-    topScore: 0, 
+    topScore: 0,
+    showEditPlayerBox: false 
 
 }
 
@@ -160,6 +161,11 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 players: playerTakenOut,
+            })
+        case(TOGGLE_EDIT_PLAYER_BOX):
+            return({
+                ...state,
+                showEditPlayerBox: !state.showEditPlayerBox
             })
         default:
             return state;

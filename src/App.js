@@ -1,5 +1,4 @@
 // import './App.css';
-import PlayersBox from './components/PlayersBox';
 import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
 import PlayersBoxDragDrop from './components/PlayersBoxDragDrop';

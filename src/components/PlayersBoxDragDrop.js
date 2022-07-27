@@ -26,7 +26,6 @@ const PlayersBox = (props) => {
 
                     </div>
                     <AddPlayerCardDragDrop />
-                    <EditPlayerModal />
 
                 </div>
 
@@ -46,9 +45,11 @@ const PlayersBox = (props) => {
                         );
                     })}
 
+
                     {/* <AddPlayerCardDragDrop /> */}
 
                 </div>
+                    <EditPlayerModal />
 
             </div>
         </DndProvider>

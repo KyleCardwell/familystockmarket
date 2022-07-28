@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { toggleEditPlayerBox } from '../actions'
+import { toggleEditPlayerBox, saveEditedPlayer } from '../actions'
 import EditPlayerScoreCard from './EditPlayerScoreCard';
 
 const EditPlayerCard = (props) => {
@@ -17,6 +17,26 @@ const EditPlayerCard = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault()
+
+        const newScores = document.getElementsByName("editRoundScore")
+        const newPointHistory = []
+
+        for(let i = 1; i < newScores.length + 1; i++) {
+            newPointHistory.push(Number(document.getElementById(`Round${i}Score`).value))
+        }
+
+        const editedPlayer = {
+            ...props.editPlayer,
+            name: playerName,
+            pointHistory: newPointHistory
+        }
+
+        console.log(newPointHistory)
+        // saveEditedPlayer(editedPlayer)
     }
     
     return props.showEditPlayerBox ? ( 
@@ -43,26 +63,26 @@ const EditPlayerCard = (props) => {
                             size="15"
                     >
                     </input>
+                    <div id="playerPoints" className='flex flex-wrap'>
+                        {props.editPlayer.pointHistory.map((score, index) => {
+                            return (
+                                <EditPlayerScoreCard
+                                    key={index}
+                                    round={index + 1}
+                                    roundPoints={score}                    
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className='flex justify-end'>
+                        <p 
+                            className='cursor-pointer'
+                            onClick={handleSave}
+                        >Save</p>
+                    </div>
                 </form>
 
             </div>
-            <div className='flex flex-wrap'>
-                {props.editPlayer.pointHistory.map((score, index) => {
-                    return (
-                        <EditPlayerScoreCard 
-                            key={index}
-                            round={index + 1}
-                            roundPoints={score}                    
-                        />
-                    )
-                })}
-            </div>
-            <div className='flex justify-end'>
-                    <p 
-                        className='cursor-pointer'
-                        onClick={props.toggleEditPlayerBox}
-                    >Save</p>
-                </div>
 
         </div>
     ) : null
@@ -76,4 +96,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { toggleEditPlayerBox })(EditPlayerCard);
+export default connect(mapStateToProps, { toggleEditPlayerBox, saveEditedPlayer })(EditPlayerCard);

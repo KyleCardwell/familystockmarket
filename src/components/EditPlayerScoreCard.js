@@ -10,18 +10,14 @@ const EditPlayerScoreCard = (props) => {
     const handleChange = (e) => {
         setRoundScore(e.target.value)
     }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
     
     return ( 
         <div className="border"> 
                 <p className='text-center'>{`R${round}`}</p>
-            <form
-                onSubmit={handleSubmit}
+            <div
             >
                 <input autoFocus
+                        id={`Round${round}Score`}
                         type="text"
                         name="editRoundScore"
                         className="text-center text-black mx-2"
@@ -30,7 +26,7 @@ const EditPlayerScoreCard = (props) => {
                         size="6"
                 >
                 </input>
-            </form>
+            </div>
 
         </div>
     )

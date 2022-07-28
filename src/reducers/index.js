@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, EDIT_THIS_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, TOGGLE_EDIT_PLAYER_BOX, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, EDIT_THIS_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, SAVE_EDITED_PLAYER, TOGGLE_EDIT_PLAYER_BOX, TOP_SCORE, UNBANK_PLAYER } from "../actions";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -172,6 +172,16 @@ export const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 editPlayer: action.payload
+            })
+        case(SAVE_EDITED_PLAYER):
+            let playerIndex = state.players.findIndex(player => {
+                return player.id === action.payload.id
+            })
+
+            console.log(playerIndex)
+            return({
+                ...state,
+
             })
         default:
             return state;

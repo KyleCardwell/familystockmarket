@@ -1,4 +1,5 @@
 import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, EDIT_THIS_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, SAVE_EDITED_PLAYER, TOGGLE_EDIT_PLAYER_BOX, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { fakePlayers } from "../components/fakePlayers";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -39,8 +40,7 @@ export const reducer = (state = initialState, action) => {
                             player.isBanked = true;
                             player.pointHistory[player.pointHistory.length - 1] = action.payload.num
                             player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
-                        }
-    
+                        }    
                     }
                 }
 
@@ -178,10 +178,10 @@ export const reducer = (state = initialState, action) => {
                 return player.id === action.payload.id
             })
 
-            console.log(playerIndex)
-            return({
-                ...state,
+            state.players.splice(playerIndex, 1, action.payload)
 
+            return({
+                ...state
             })
         default:
             return state;

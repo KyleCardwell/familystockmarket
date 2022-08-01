@@ -1,6 +1,4 @@
 import React from "react";
-import PlayerCard from "./PlayerCard";
-import AddPlayerCard from "./AddPlayerCard";
 import { connect } from "react-redux";
 import PlayerCardDragDrop from "./PlayerCardDragDrop";
 import AddPlayerCardDragDrop from "./AddPlayerCardDragDrop";

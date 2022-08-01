@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { toggleEditPlayerBox, saveEditedPlayer } from '../actions'
+import { toggleEditPlayerBox, saveEditedPlayer, bankPlayer, unBankPlayer } from '../actions'
 import EditPlayerScoreCard from './EditPlayerScoreCard';
 
 const EditPlayerCard = (props) => {
@@ -28,15 +28,22 @@ const EditPlayerCard = (props) => {
         for(let i = 1; i < newScores.length + 1; i++) {
             newPointHistory.push(Number(document.getElementById(`Round${i}Score`).value))
         }
-
+      
         const editedPlayer = {
             ...props.editPlayer,
             name: playerName,
             pointHistory: newPointHistory
         }
 
-        console.log(newPointHistory)
-        // saveEditedPlayer(editedPlayer)
+        props.saveEditedPlayer(editedPlayer)
+
+        if(editedPlayer.pointHistory[editedPlayer.pointHistory.length - 1] > 0) {
+            props.bankPlayer(editedPlayer.id, newPointHistory[newPointHistory.length - 1])
+        } else {
+            props.unBankPlayer(editedPlayer.id)
+        }
+
+        props.toggleEditPlayerBox()
     }
     
     return props.showEditPlayerBox ? ( 
@@ -91,9 +98,11 @@ const EditPlayerCard = (props) => {
 const mapStateToProps = state => {
     return({
         showEditPlayerBox: state.showEditPlayerBox,
-        editPlayer: state.editPlayer
+        editPlayer: state.editPlayer,
+        currentRoll: state.currentRoll,
+        players: state.players
     })
 }
 
 
-export default connect(mapStateToProps, { toggleEditPlayerBox, saveEditedPlayer })(EditPlayerCard);
+export default connect(mapStateToProps, { toggleEditPlayerBox, saveEditedPlayer, bankPlayer, unBankPlayer })(EditPlayerCard);

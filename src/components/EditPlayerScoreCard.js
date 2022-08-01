@@ -7,6 +7,17 @@ const EditPlayerScoreCard = (props) => {
     
     const [ roundScore, setRoundScore ] = useState(roundPoints)
 
+    const [ disabled, setDisabled ] = useState(false)
+
+    useEffect(() => {
+        if (round === props.currentRound && props.currentRoll < 4) {
+            setDisabled(true)
+        }
+        if( round === props.currentRound && props.currentRoll > 3) {
+            setDisabled(false)
+        }
+    }, [props.currentRoll])
+
     const handleChange = (e) => {
         setRoundScore(e.target.value)
     }
@@ -24,6 +35,7 @@ const EditPlayerScoreCard = (props) => {
                         value={roundScore}
                         onChange={handleChange}
                         size="6"
+                        disabled={disabled}
                 >
                 </input>
             </div>
@@ -34,6 +46,8 @@ const EditPlayerScoreCard = (props) => {
 
 const mapStateToProps = state => {
     return({
+        currentRoll: state.currentRoll,
+        currentRound: state.currentRound
         
     })
 }

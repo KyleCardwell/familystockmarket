@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { bankPlayer, unBankPlayer, deletePlayer, movePerson } from '../actions'
+import { bankPlayer, unBankPlayer, deletePlayer, movePerson, toggleEditPlayerBox, editThisPlayer } from '../actions'
 
 import { useDrag, useDrop } from 'react-dnd';
 
@@ -58,8 +58,11 @@ const PlayerCard = (props) => {
     const handleClick = () => {
         if(isBanked === false) {
 
+            if(props.currentRoll > 3) {
+
             props.bankPlayer(id, currentPot)
             document.getElementById("diceRoll").focus();
+            }
 
         } else {
             
@@ -83,6 +86,12 @@ const PlayerCard = (props) => {
         document.getElementById("diceRoll").focus();
     }
 
+    const handleClickEdit = () => {
+        let playerToEdit = props.players.filter(player => player.id === id)[0]
+        props.editThisPlayer(playerToEdit)
+        props.toggleEditPlayerBox()
+    }
+
     return (
 
         <div 
@@ -95,18 +104,23 @@ const PlayerCard = (props) => {
 
             <div 
                 className={`cursor-pointer group p-2 ${isBanked ? "bg-red-800 hover:bg-red-600" : ""} hover:bg-gray-800`}
-                onClick={handleClick}
                 onMouseEnter={handleShowEdit}
                 onMouseLeave={handleHideEdit}
-            >
+                >
+                <div
+                    onClick={handleClick}
+                >
+
                 <h2 className="font-bold text-xl">
                     {points}
                 </h2>
                 <h3 className="font-bold text-xl">
                     {name}
                 </h3>
+                </div>
                 <div
                     className={showEdit ? "block" : "hidden group-hover:block"}
+                    onClick={handleClickEdit}
                 >Edit</div>
                 <div
                     className={`${showEdit ? "block" : "hidden group-hover:block"}`}
@@ -127,7 +141,9 @@ const PlayerCard = (props) => {
 const mapStateToProps = (state) => {
     return({
         currentPot: state.currentPot,
+        players: state.players,
+        currentRoll: state.currentRoll
     })
 }
 
-export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer, movePerson})(PlayerCard);
+export default connect(mapStateToProps, {bankPlayer, unBankPlayer, deletePlayer, movePerson, toggleEditPlayerBox, editThisPlayer})(PlayerCard);

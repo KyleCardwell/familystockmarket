@@ -1,8 +1,8 @@
 // import './App.css';
-import PlayersBox from './components/PlayersBox';
 import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
 import PlayersBoxDragDrop from './components/PlayersBoxDragDrop';
+import EditPlayerModal from './components/EditPlayerModal';
 
 const App = (props) => {
 
@@ -10,6 +10,7 @@ const App = (props) => {
     <div className="bg-gray-800 p-1 text-white h-screen">
       <div className="p-5 h-full">
         <div className="flex flex-row justify-evenly h-full">
+          <EditPlayerModal /> 
           <div className="w-3/4 flex flex-col h-full">
             
             <Controls />

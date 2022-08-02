@@ -1,4 +1,5 @@
-import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { ADD_PLAYER, ADD_TO_POT, BANK_PLAYER, DELETE_PLAYER, EDIT_THIS_PLAYER, MOVE_PERSON, NEW_GAME, NEXT_ROUND, PREV_ROUND, RESTART_ROUND, SAVE_EDITED_PLAYER, TOGGLE_EDIT_PLAYER_BOX, TOP_SCORE, UNBANK_PLAYER } from "../actions";
+import { fakePlayers } from "../components/fakePlayers";
 // import { fakePlayers } from "../components/fakePlayers";
 
 export const initialState = {
@@ -7,7 +8,9 @@ export const initialState = {
     currentPot: 0,
     currentRoll: 1,
     currentRound: 1,
-    topScore: 0, 
+    topScore: 0,
+    showEditPlayerBox: false,
+    editPlayer: {name: ''}
 
 }
 
@@ -24,27 +27,39 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 players: filtered
             })
+        // case(BANK_PLAYER):
+
+        //     const bankPlayers = state.players.map(player => {
+
+        //         if(state.currentRoll > 3) {
+
+        //             if(Number(player.id) === Number(action.payload.id)) {
+                        
+        //                 if(player.isBanked === false) {
+    
+        //                     player.isBanked = true;
+        //                     player.pointHistory[player.pointHistory.length - 1] = action.payload.num
+        //                     player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+        //                 }    
+        //             }
+        //         }
+
+        //         return player
+        //     })
+
         case(BANK_PLAYER):
 
             const bankPlayers = state.players.map(player => {
 
-                if(state.currentRoll > 3) {
+                if(Number(player.id) === Number(action.payload.id)) {
 
-                    if(Number(player.id) === Number(action.payload.id)) {
-                        
-                        if(player.isBanked === false) {
-    
-                            player.isBanked = true;
-                            player.pointHistory[player.pointHistory.length - 1] = action.payload.num
-                            player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
-                        }
-    
-                    }
-                }
+                        player.isBanked = true;
+                        player.pointHistory[player.pointHistory.length - 1] = action.payload.num
+                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+                }                
 
                 return player
             })
-
             return({
                 ...state,
                 players: bankPlayers
@@ -55,12 +70,9 @@ export const reducer = (state = initialState, action) => {
                 
                 if(Number(player.id) === Number(action.payload)) {
 
-                    if(player.isBanked === true) {
-
                         player.isBanked = false;
                         player.pointHistory[player.pointHistory.length - 1] = 0
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
-                    }
 
                 }
                 
@@ -89,7 +101,7 @@ export const reducer = (state = initialState, action) => {
                     return ({
                         ...player,
                         isBanked: false,
-                        pointHistory: [...player.pointHistory, 0]
+                        pointHistory: player.pointHistory.length <= state.currentRound ? [...player.pointHistory, 0] : [...player.pointHistory]
                     })
                 })
             })
@@ -104,7 +116,7 @@ export const reducer = (state = initialState, action) => {
                     return ({
                         ...player,
                         isBanked: false,
-                        pointHistory: [...player.pointHistory, 0]
+                        // pointHistory: [...player.pointHistory, 0]
                     })
                 })
             })
@@ -160,6 +172,26 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 players: playerTakenOut,
+            })
+        case(TOGGLE_EDIT_PLAYER_BOX):
+            return({
+                ...state,
+                showEditPlayerBox: !state.showEditPlayerBox
+            })
+        case(EDIT_THIS_PLAYER):
+            return ({
+                ...state,
+                editPlayer: action.payload
+            })
+        case(SAVE_EDITED_PLAYER):
+            let playerIndex = state.players.findIndex(player => {
+                return player.id === action.payload.id
+            })
+
+            state.players.splice(playerIndex, 1, action.payload)
+
+            return({
+                ...state
             })
         default:
             return state;

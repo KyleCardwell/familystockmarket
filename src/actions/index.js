@@ -11,6 +11,9 @@ export const NEW_GAME = "NEW_GAME"
 export const TOP_SCORE = "TOP_SCORE"
 export const RESTART_ROUND = "RESTART_ROUND"
 export const MOVE_PERSON = "MOVE_PERSON"
+export const TOGGLE_EDIT_PLAYER_BOX = "TOGGLE_EDIT_PLAYER_BOX"
+export const EDIT_THIS_PLAYER = "EDIT_THIS_PLAYER"
+export const SAVE_EDITED_PLAYER = "SAVE_EDITED_PLAYER"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -55,4 +58,16 @@ export const setTopScore = (num) => {
 export const movePerson = (personId, hoveredId) => {
 
     return({type: MOVE_PERSON, payload: {personId: personId, hoveredId: hoveredId}})
+}
+
+export const toggleEditPlayerBox = () => {
+    return({type: TOGGLE_EDIT_PLAYER_BOX})
+}
+
+export const editThisPlayer = (player) => {
+    return({type: EDIT_THIS_PLAYER, payload: player})
+}
+
+export const saveEditedPlayer = (player) => {
+    return({type: SAVE_EDITED_PLAYER, payload: player})
 }

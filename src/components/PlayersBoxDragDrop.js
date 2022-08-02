@@ -1,11 +1,10 @@
 import React from "react";
-import PlayerCard from "./PlayerCard";
-import AddPlayerCard from "./AddPlayerCard";
 import { connect } from "react-redux";
 import PlayerCardDragDrop from "./PlayerCardDragDrop";
 import AddPlayerCardDragDrop from "./AddPlayerCardDragDrop";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import EditPlayerModal from "./EditPlayerModal";
 
 const PlayersBox = (props) => {
 
@@ -44,9 +43,11 @@ const PlayersBox = (props) => {
                         );
                     })}
 
+
                     {/* <AddPlayerCardDragDrop /> */}
 
                 </div>
+                    {/* <EditPlayerModal /> */}
 
             </div>
         </DndProvider>

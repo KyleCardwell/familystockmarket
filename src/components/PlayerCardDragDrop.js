@@ -58,8 +58,11 @@ const PlayerCard = (props) => {
     const handleClick = () => {
         if(isBanked === false) {
 
+            if(props.currentRoll > 3) {
+
             props.bankPlayer(id, currentPot)
             document.getElementById("diceRoll").focus();
+            }
 
         } else {
             
@@ -139,6 +142,7 @@ const mapStateToProps = (state) => {
     return({
         currentPot: state.currentPot,
         players: state.players,
+        currentRoll: state.currentRoll
     })
 }
 

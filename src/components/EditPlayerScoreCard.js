@@ -23,7 +23,7 @@ const EditPlayerScoreCard = (props) => {
     }
     
     return ( 
-        <div className="border"> 
+        <div className="border m-2"> 
                 <p className='text-center'>{`R${round}`}</p>
             <div
             >

@@ -46,52 +46,54 @@ const EditPlayerCard = (props) => {
         props.toggleEditPlayerBox()
     }
     
-    return props.showEditPlayerBox ? ( 
-        <div className="flex flex-col border p-2"> 
-            <div>
+    return props.showEditPlayerBox ? (
+        // <div tabindex="-1" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full bg-gray-800">
+        
+            <div className="flex flex-col border my-36 mx-20 p-2 absolute top-1.5 right-0 left-0 z-50 md:inset-0 h-modal bg-gray-800"> 
+                <div className='m-6'>
 
-                <div className='flex justify-between'>
-                    <p>Edit Player</p>
-                    <p 
-                        className='cursor-pointer'
-                        onClick={props.toggleEditPlayerBox}
-                    >Close</p>
-                </div>
-                <form
-                    className='m-2'
-                    onSubmit={handleSubmit}
-                >
-                    <input autoFocus
-                            type="text"
-                            name="editPlayerName"
-                            className="text-center text-black mx-2"
-                            value={playerName}
-                            onChange={handleChange}
-                            size="15"
-                    >
-                    </input>
-                    <div id="playerPoints" className='flex flex-wrap'>
-                        {props.editPlayer.pointHistory.map((score, index) => {
-                            return (
-                                <EditPlayerScoreCard
-                                    key={index}
-                                    round={index + 1}
-                                    roundPoints={score}                    
-                                />
-                            )
-                        })}
-                    </div>
-                    <div className='flex justify-end'>
+                    <div className='flex justify-between'>
+                        <p>Edit Player</p>
                         <p 
                             className='cursor-pointer'
-                            onClick={handleSave}
-                        >Save</p>
+                            onClick={props.toggleEditPlayerBox}
+                        >Close</p>
                     </div>
-                </form>
+                    <form
+                        className='m-2'
+                        onSubmit={handleSubmit}
+                    >
+                        <input autoFocus
+                                type="text"
+                                name="editPlayerName"
+                                className="text-center text-black mx-2"
+                                value={playerName}
+                                onChange={handleChange}
+                                size="15"
+                        >
+                        </input>
+                        <div id="playerPoints" className='flex flex-wrap mt-6'>
+                            {props.editPlayer.pointHistory.map((score, index) => {
+                                return (
+                                    <EditPlayerScoreCard
+                                        key={index}
+                                        round={index + 1}
+                                        roundPoints={score}                    
+                                    />
+                                )
+                            })}
+                        </div>
+                        <div className='flex justify-end mt-6'>
+                            <p 
+                                className='cursor-pointer'
+                                onClick={handleSave}
+                            >Save</p>
+                        </div>
+                    </form>
 
+                </div>
             </div>
-
-        </div>
+        // </div>
     ) : null
 }
 

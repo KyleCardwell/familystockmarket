@@ -27,26 +27,39 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 players: filtered
             })
+        // case(BANK_PLAYER):
+
+        //     const bankPlayers = state.players.map(player => {
+
+        //         if(state.currentRoll > 3) {
+
+        //             if(Number(player.id) === Number(action.payload.id)) {
+                        
+        //                 if(player.isBanked === false) {
+    
+        //                     player.isBanked = true;
+        //                     player.pointHistory[player.pointHistory.length - 1] = action.payload.num
+        //                     player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+        //                 }    
+        //             }
+        //         }
+
+        //         return player
+        //     })
+
         case(BANK_PLAYER):
 
             const bankPlayers = state.players.map(player => {
 
-                if(state.currentRoll > 3) {
+                if(Number(player.id) === Number(action.payload.id)) {
 
-                    if(Number(player.id) === Number(action.payload.id)) {
-                        
-                        if(player.isBanked === false) {
-    
-                            player.isBanked = true;
-                            player.pointHistory[player.pointHistory.length - 1] = action.payload.num
-                            player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
-                        }    
-                    }
-                }
+                        player.isBanked = true;
+                        player.pointHistory[player.pointHistory.length - 1] = action.payload.num
+                        player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
+                }                
 
                 return player
             })
-
             return({
                 ...state,
                 players: bankPlayers
@@ -57,12 +70,9 @@ export const reducer = (state = initialState, action) => {
                 
                 if(Number(player.id) === Number(action.payload)) {
 
-                    if(player.isBanked === true) {
-
                         player.isBanked = false;
                         player.pointHistory[player.pointHistory.length - 1] = 0
                         player.points = player.pointHistory.reduce((sum, value) => {return sum + value}, 0)
-                    }
 
                 }
                 
@@ -91,7 +101,7 @@ export const reducer = (state = initialState, action) => {
                     return ({
                         ...player,
                         isBanked: false,
-                        pointHistory: [...player.pointHistory, 0]
+                        pointHistory: player.pointHistory.length <= state.currentRound ? [...player.pointHistory, 0] : [...player.pointHistory]
                     })
                 })
             })
@@ -106,7 +116,7 @@ export const reducer = (state = initialState, action) => {
                     return ({
                         ...player,
                         isBanked: false,
-                        pointHistory: [...player.pointHistory, 0]
+                        // pointHistory: [...player.pointHistory, 0]
                     })
                 })
             })

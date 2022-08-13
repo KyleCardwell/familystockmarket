@@ -48,11 +48,11 @@ const Scoreboard = (props) => {
             <h4 className="font-bold text-center border">Scoreboard</h4>
             <div className="flex justify-between font-bold border">
 
-                <h4 className="w-1/5 text-center align-bottom">Rank</h4>
-                <h4 className="w-1/5 text-center align-bottom">Name</h4>
-                <h4 className="w-1/5 text-center align-bottom">Score</h4>
-                <h4 className="w-1/5 text-center align-bottom">+Bank</h4>
-                <h4 className="w-1/5 text-center align-bottom">Behind 1st</h4>
+                <h4 className="w-1/5 text-center ">Rank</h4>
+                <h4 className="w-1/5 text-center ">Name</h4>
+                <h4 className="w-1/5 text-center ">Score</h4>
+                <h4 className="w-1/5 text-center ">+Bank</h4>
+                <h4 className="w-1/5 text-center ">Behind 1st</h4>
 
             </div>
 

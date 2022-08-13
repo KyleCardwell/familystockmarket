@@ -44,6 +44,7 @@ const EditPlayerCard = (props) => {
         }
 
         props.toggleEditPlayerBox()
+        document.getElementById("diceRoll").focus();
     }
     
     return props.showEditPlayerBox ? (
@@ -56,7 +57,10 @@ const EditPlayerCard = (props) => {
                         <p>Edit Player</p>
                         <p 
                             className='cursor-pointer'
-                            onClick={props.toggleEditPlayerBox}
+                            onClick={() => {
+                                props.toggleEditPlayerBox()
+                                document.getElementById("diceRoll").focus();
+                            }}
                         >Close</p>
                     </div>
                     <form

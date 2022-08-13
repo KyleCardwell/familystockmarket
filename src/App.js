@@ -3,6 +3,7 @@ import Scoreboard from './components/Scoreboard';
 import Controls from './components/Controls';
 import PlayersBoxDragDrop from './components/PlayersBoxDragDrop';
 import EditPlayerModal from './components/EditPlayerModal';
+import ControlsDoubleBtn from './components/ControlsDoubleBtn';
 
 const App = (props) => {
 
@@ -13,7 +14,8 @@ const App = (props) => {
           <EditPlayerModal /> 
           <div className="w-3/4 flex flex-col h-full">
             
-            <Controls />
+            {/* <Controls /> */}
+            <ControlsDoubleBtn />
             
             <PlayersBoxDragDrop />
 

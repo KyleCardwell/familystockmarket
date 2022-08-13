@@ -11,6 +11,25 @@ const Scoreboard = (props) => {
     
     sorted.sort(function(a,b){return b.points - a.points})
 
+    let playerRank = 1
+
+    for (let i = 0; i < sorted.length; i++) {
+
+        if (i === 0) {
+            sorted[i].rank = playerRank
+            continue
+        }
+
+        if (sorted[i].points === sorted[i - 1].points) {
+            sorted[i].rank = playerRank
+        } else {
+            playerRank++
+            sorted[i].rank = playerRank
+        }
+
+    }
+  
+
     if(sorted.length > 0){
     
         props.setTopScore(sorted[0].points)
@@ -29,10 +48,11 @@ const Scoreboard = (props) => {
             <h4 className="font-bold text-center border">Scoreboard</h4>
             <div className="flex justify-between font-bold border">
 
-                <h4 className="w-1/4 text-center">Name</h4>
-                <h4 className="w-1/4 text-center">Score</h4>
-                <h4 className="w-1/4 text-center">+Bank</h4>
-                <h4 className="w-1/4 text-center">Behind 1st</h4>
+                <h4 className="w-1/5 text-center align-bottom">Rank</h4>
+                <h4 className="w-1/5 text-center align-bottom">Name</h4>
+                <h4 className="w-1/5 text-center align-bottom">Score</h4>
+                <h4 className="w-1/5 text-center align-bottom">+Bank</h4>
+                <h4 className="w-1/5 text-center align-bottom">Behind 1st</h4>
 
             </div>
 
@@ -45,6 +65,7 @@ const Scoreboard = (props) => {
                             key={person.id}
                             id={person.id}
                             name={person.name}
+                            rank={person.rank}
                             points={person.points}
                             isBanked={person.isBanked}
                             behind1st={props.topScore - person.points}

@@ -1,17 +1,26 @@
-import React from 'react';
+import React from "react";
 
 const ScoreCard = (props) => {
+  const { handleClick, showCalc } = props;
 
-    return(
-        <div className={`border p-1 flex justify-between`}>
-            <h4 className="w-1/5">{props.rank}</h4>
-            <h4 className="w-1/5">{props.name}</h4>
-            <h4 className="w-1/5 text-center">{props.points}</h4>
-            <h4 className="w-1/5 text-center">{props.isBanked ? "-" : props.ifBank}</h4>
-            <h4 className="w-1/5 text-center">{props.topScore === props.points ? "-" : props.behind1st}</h4>
-
-        </div>
-    )
-}
+  return (
+    <div className={`border p-1 flex justify-between`}>
+      <h4 className="w-1/5">{props.rank}</h4>
+      <h4 className="w-1/5">{props.name}</h4>
+      <h4
+        className={`w-1/5 text-center ${showCalc ? "cursor-pointer" : ""}`}
+        onClick={() => handleClick(props.points)}
+      >
+        {props.points}
+      </h4>
+      <h4 className="w-1/5 text-center">
+        {props.isBanked ? "-" : props.ifBank}
+      </h4>
+      <h4 className="w-1/5 text-center">
+        {props.topScore === props.points ? "-" : props.behind1st}
+      </h4>
+    </div>
+  );
+};
 
 export default ScoreCard;

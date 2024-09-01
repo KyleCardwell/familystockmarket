@@ -19,17 +19,16 @@ const Controls = (props) => {
 
   const handleChange = (e) => {
     if (e.target.value > -1 && e.target.value < 7) {
+      setDiceRoll({
+        ...diceRoll,
+        [e.target.name]: e.target.value,
+      });
 
-        setDiceRoll({
-          ...diceRoll,
-          [e.target.name]: e.target.value,
-        });
-
-        if (e.target.name === "dice1" && e.target.value !== "") {
-            document.getElementById("diceRoll2").focus()
-        } else if (e.target.name === "dice2" & e.target.value !== "") {
-            document.getElementById("diceRoll").focus()
-        }
+      if (e.target.name === "dice1" && e.target.value !== "") {
+        document.getElementById("diceRoll2").focus();
+      } else if ((e.target.name === "dice2") & (e.target.value !== "")) {
+        document.getElementById("diceRoll").focus();
+      }
     }
   };
 
@@ -76,9 +75,10 @@ const Controls = (props) => {
           className="border p-2 bg-white text-gray-900"
           onClick={() => props.newGame()}
         >
-          New Game
+          New Gamessss
         </button>
       </div>
+      <h3 className="font-bold text-center">Market Will Crash:</h3>
 
       <div className="flex justify-evenly text-center">
         <div className="border w-1/3">
@@ -121,7 +121,7 @@ const Controls = (props) => {
               size="3"
               placeholder="dice 1"
               onChange={handleChange}
-              onFocus={e => e.target.select()}
+              onFocus={(e) => e.target.select()}
               className="border text-black h-14 text-center text-"
             />
 
@@ -133,7 +133,7 @@ const Controls = (props) => {
               size="3"
               placeholder="dice 2"
               onChange={handleChange}
-              onFocus={e => e.target.select()}
+              onFocus={(e) => e.target.select()}
               className="border text-black h-14 text-center"
             />
 
@@ -149,7 +149,7 @@ const Controls = (props) => {
           </div>
           <div className="content-evenly p-2">
             <div className="flex space-x-2">
-              <div 
+              <div
                 onClick={() => {
                   props.prevRound();
                   document.getElementById("diceRoll").focus();

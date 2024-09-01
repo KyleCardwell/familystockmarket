@@ -14,6 +14,12 @@ export const MOVE_PERSON = "MOVE_PERSON"
 export const TOGGLE_EDIT_PLAYER_BOX = "TOGGLE_EDIT_PLAYER_BOX"
 export const EDIT_THIS_PLAYER = "EDIT_THIS_PLAYER"
 export const SAVE_EDITED_PLAYER = "SAVE_EDITED_PLAYER"
+export const SET_MARKET_CRASH_NUMS = "SET_MARKET_CRASH_NUMS"
+export const UPDATE_MARKET_CRASH_NUMS = "UPDATE_MARKET_CRASH_NUMS"
+export const APPLY_MARKET_CRASH = "APPLY_MARKET_CRASH"
+export const UPDATE_MARKET_CRASH_VALUE = "UPDATE_MARKET_CRASH_VALUE"
+export const APPLY_MARKET_SURGE = "APPLY_MARKET_SURGE"
+export const UPDATE_MARKET_SURGE_VALUE = "UPDATE_MARKET_SURGE_VALUE"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -70,4 +76,28 @@ export const editThisPlayer = (player) => {
 
 export const saveEditedPlayer = (player) => {
     return({type: SAVE_EDITED_PLAYER, payload: player})
+}
+
+export const setMarketCrashNums = () => {
+    return({type: SET_MARKET_CRASH_NUMS})
+}
+
+export const updateMarketCrashNums = (number) => {
+    return({type: UPDATE_MARKET_CRASH_NUMS, payload: number})
+}
+
+export const applyMarketCrash = (pointsLost) => {
+    return ({type: APPLY_MARKET_CRASH, payload: pointsLost})
+}
+
+export const updateMarketCrashValue = (points) => {
+    return ({type: UPDATE_MARKET_CRASH_VALUE, payload: points})
+}
+
+export const applyMarketSurge = (pointsWon) => {
+    return ({type: APPLY_MARKET_SURGE, payload: pointsWon})
+}
+
+export const updateMarketSurgeValue = (points) => {
+    return ({type: UPDATE_MARKET_SURGE_VALUE, payload: points})
 }

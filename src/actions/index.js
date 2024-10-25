@@ -20,6 +20,7 @@ export const APPLY_MARKET_CRASH = "APPLY_MARKET_CRASH"
 export const UPDATE_MARKET_CRASH_VALUE = "UPDATE_MARKET_CRASH_VALUE"
 export const APPLY_MARKET_SURGE = "APPLY_MARKET_SURGE"
 export const UPDATE_MARKET_SURGE_VALUE = "UPDATE_MARKET_SURGE_VALUE"
+export const UPDATE_MARKET_SHIFT_VALUE = "UPDATE_MARKET_SHIFT_VALUE"
 
 export const addPlayer= (player) => {
     return({type: ADD_PLAYER, payload: player})
@@ -100,4 +101,8 @@ export const applyMarketSurge = (pointsWon) => {
 
 export const updateMarketSurgeValue = (points) => {
     return ({type: UPDATE_MARKET_SURGE_VALUE, payload: points})
+}
+
+export const updateMarketShiftValue = () => {
+    return ({type: UPDATE_MARKET_SHIFT_VALUE})
 }

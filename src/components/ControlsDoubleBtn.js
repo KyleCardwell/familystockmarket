@@ -13,6 +13,7 @@ import {
   updateMarketCrashValue,
   applyMarketSurge,
   updateMarketSurgeValue,
+  updateMarketShiftValue,
 } from "../actions";
 import { generateRandomNumber } from "../helpers";
 
@@ -178,20 +179,24 @@ const ControlsDoubleBtn = (props) => {
         if (marketCrashLive) {
           if (marketHasCrashed()) {
             dispatch(applyMarketCrash(marketShiftValue));
-            props.nextRound();
-            props.setMarketCrashNums();
-            dispatch(updateMarketCrashValue());
-            dispatch(updateMarketSurgeValue());
+            props.addToPot(props.currentPot);
+            // props.nextRound();
+            // props.setMarketCrashNums();
+            // dispatch(updateMarketCrashValue());
+            // dispatch(updateMarketSurgeValue());
+            dispatch(updateMarketShiftValue());
             alert(
               `Aw snap! The market took a bad turn... If you haven't banked yet, you lose ${marketShiftValue}%. Better luck next time!`
             );
             document.getElementById("diceRoll").focus();
           } else if (marketHasSurged()) {
             dispatch(applyMarketSurge(marketShiftValue));
-            props.nextRound();
-            props.setMarketCrashNums();
-            dispatch(updateMarketCrashValue());
-            dispatch(updateMarketSurgeValue());
+            props.addToPot(props.currentPot);
+            // props.nextRound();
+            // props.setMarketCrashNums();
+            // dispatch(updateMarketCrashValue());
+            // dispatch(updateMarketSurgeValue());
+            dispatch(updateMarketShiftValue());
             alert(
               `Hot dog! The market took jump... If you haven't banked yet, you gain ${marketShiftValue}%. Must be nice!`
             );
@@ -262,6 +267,7 @@ const ControlsDoubleBtn = (props) => {
             className="p-2 bg-indigo-900 text-gray-400"
             onClick={() => {
               setMarketCrashLive((prev) => !prev);
+              document.getElementById("diceRoll").focus();
             }}
           >
             {`Turn ${marketCrashLive ? "off" : "on"} Market Shift`}
@@ -278,8 +284,8 @@ const ControlsDoubleBtn = (props) => {
           {props.currentRoll <= 3 ? (
             <div className="p-2">
               <p>No one can bank until after roll 3</p>
-              <p className="mt-2">Doubles are worth 50</p>
-              <p className="mt-2">7 is worth 70</p>
+              <p className="mt-3">Doubles are worth 50</p>
+              <p className="mt-3">7 is worth 70</p>
             </div>
           ) : (
             ""
@@ -287,9 +293,11 @@ const ControlsDoubleBtn = (props) => {
           {props.currentRoll > 3 ? (
             <div className="p-2">
               <p>Doubles will double the current pot</p>
-              <p className="mt-2">7 will end the round</p>
-              {marketCrashLive && <p className="mt-2">Maket surge or crash will end the round</p>}
-              {!marketCrashLive && <p className="mt-2">_</p>}
+              <p className="mt-3">7 will end the round</p>
+              {marketCrashLive && (
+                <p className="mt-3">Maket Shift affects UNBANKED players</p>
+              )}
+              {!marketCrashLive && <p className="mt-3">_</p>}
             </div>
           ) : (
             ""
@@ -379,10 +387,10 @@ const ControlsDoubleBtn = (props) => {
                   <h5 className="text-2xl">{marketSurgeSingle}</h5>
                 </div>
               </div>
-              <div className="inline-block align-middle flex flex-col">
-                <p>You will earn:</p>
+              {/* <div className="inline-block align-middle flex flex-col">
+                <p>You will gain:</p>
                 <h5 className="flex-grow text-2xl">{marketShiftValue}%</h5>
-              </div>
+              </div> */}
             </div>
             <div className="border">
               <div className="border p-2">
@@ -397,18 +405,11 @@ const ControlsDoubleBtn = (props) => {
                 >
                   <h5 className="text-2xl">{marketCrashSingle}</h5>
                 </div>
-                {/* <div
-                className={`flex-1 border font-bold text-center ${
-                  marketCrashNums[1].checked && "bg-red-800"
-                }`}
-              >
-                <h5 className="text-2xl">{marketCrashNums[1].value}</h5>
-              </div> */}
               </div>
-              <div className="inline-block align-middle flex flex-col">
+              {/* <div className="inline-block align-middle flex flex-col">
                 <p>You will lose:</p>
                 <h5 className="flex-grow text-2xl">{marketShiftValue}%</h5>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

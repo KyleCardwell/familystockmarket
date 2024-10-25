@@ -59,14 +59,19 @@ const Scoreboard = (props) => {
 
   return (
     <section className="bg-gray-900 rounded overflow-y-scroll shadow-lg p-5 h-full">
-      {showCalc && (
-        <div className="flex flex-row border justify-around difference">
-          <p>{firstNumber}</p>
-          <p>{secondNumber}</p>
-          <p>=</p>
-          <p>{difference}</p>
-        </div>
-      )}
+      {showCalc &&
+        (!firstNumber ? (
+          <div className="flex flex-row border justify-around difference">
+            <p className="text-gray-400">Choose 2 numbers to see their difference</p>
+          </div>
+        ) : (
+          <div className="flex flex-row border justify-around difference">
+            <p>{firstNumber}</p>
+            <p>{secondNumber}</p>
+            <p>=</p>
+            <p>{difference}</p>
+          </div>
+        ))}
 
       <div className="relative border">
         <div

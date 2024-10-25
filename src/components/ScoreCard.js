@@ -4,11 +4,11 @@ const ScoreCard = (props) => {
   const { handleClick, showCalc } = props;
 
   return (
-    <div className={`border p-1 flex justify-between`}>
+    <div className={`border p-1 flex justify-between hover:bg-gray-800`}>
       <h4 className="w-1/5">{props.rank}</h4>
       <h4 className="w-1/5">{props.name}</h4>
       <h4
-        className={`w-1/5 text-center ${showCalc ? "cursor-pointer" : ""}`}
+        className={`w-1/5 text-center ${showCalc ? "cursor-pointer border bg-blue-800" : ""}`}
         onClick={() => handleClick(props.points)}
       >
         {props.points}

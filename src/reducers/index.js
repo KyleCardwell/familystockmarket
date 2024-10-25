@@ -18,6 +18,7 @@ import {
   UNBANK_PLAYER,
   UPDATE_MARKET_CRASH_NUMS,
   UPDATE_MARKET_CRASH_VALUE,
+  UPDATE_MARKET_SHIFT_VALUE,
   UPDATE_MARKET_SURGE_VALUE,
 } from "../actions";
 import { fakePlayers } from "../components/fakePlayers";
@@ -88,6 +89,7 @@ export const reducer = (state = initialState, action) => {
         if (Number(player.id) === Number(action.payload.id)) {
           player.isBanked = true;
           player.pointHistory[player.pointHistory.length - 1] =
+            player.pointHistory[player.pointHistory.length - 1] +
             action.payload.num;
           player.points = player.pointHistory.reduce((sum, value) => {
             return sum + value;
@@ -171,11 +173,11 @@ export const reducer = (state = initialState, action) => {
         players: state.players.map((player) => {
           if (player.isBanked === true) {
             player.isBanked = false;
-            player.pointHistory[player.pointHistory.length - 1] = 0;
-            player.points = player.pointHistory.reduce((sum, value) => {
-              return sum + value;
-            }, 0);
           }
+          player.pointHistory[player.pointHistory.length - 1] = 0;
+          player.points = player.pointHistory.reduce((sum, value) => {
+            return sum + value;
+          }, 0);
 
           return player;
         }),
@@ -284,15 +286,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         players: state.players.map((player) => {
           if (player.isBanked === false) {
-            player.pointHistory[player.pointHistory.length - 1] = -Math.ceil(
-              player.points * (action.payload / 100)
-            );
+            player.pointHistory[player.pointHistory.length - 1] =
+              player.pointHistory[player.pointHistory.length - 1] +
+              -Math.ceil(player.points * (action.payload / 100));
             player.points = player.pointHistory.reduce((sum, value) => {
               return sum + value;
             }, 0);
           }
           return player;
         }),
+        currentRoll: state.currentRoll + 1,
       };
 
     case UPDATE_MARKET_CRASH_VALUE:
@@ -307,15 +310,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         players: state.players.map((player) => {
           if (player.isBanked === false) {
-            player.pointHistory[player.pointHistory.length - 1] = Math.ceil(
-              player.points * (action.payload / 100)
-            );
+            player.pointHistory[player.pointHistory.length - 1] =
+              player.pointHistory[player.pointHistory.length - 1] +
+              Math.ceil(player.points * (action.payload / 100));
             player.points = player.pointHistory.reduce((sum, value) => {
               return sum + value;
             }, 0);
           }
           return player;
         }),
+        currentRoll: state.currentRoll + 1,
       };
 
     case UPDATE_MARKET_SURGE_VALUE:
@@ -323,6 +327,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         marketSurgeValue: generateRandomNumber() * 10,
         crashAndSurge: generateTwoDistinctRandomNumbers(),
+      };
+
+    case UPDATE_MARKET_SHIFT_VALUE:
+      return {
+        ...state,
+        marketShiftValue: generateRandomNumber() * 10,
       };
 
     default:

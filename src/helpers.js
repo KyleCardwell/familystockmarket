@@ -1,4 +1,5 @@
 export const generateRandomNumber = () => Math.floor(Math.random() * 4) + 3;
+// export const generateRandomNumber = () => 5;
 
 export const generateTwoDistinctRandomNumbers = () => {
   // Create an array with numbers 1 to 6
